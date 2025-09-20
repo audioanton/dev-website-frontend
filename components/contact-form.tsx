@@ -8,19 +8,21 @@ const ContactForm: React.FC = () => {
 
         const form = e.target as HTMLFormElement
 		const formValues = Object.fromEntries(new FormData(form).entries())
+        var sandboxed = JSON.parse(JSON.stringify(formValues))
+        sandboxed['sandboxed'] = true
 
         try {
-            await fetch(process.env.NEXT_PUBLIC_BACKEND_URL || "localhost:8080/mail", {
+            await fetch("/api/mail", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                //mode: "no-cors",
-                body: JSON.stringify(formValues)
+                // body: JSON.stringify(formValues)
+                body: JSON.stringify(sandboxed)
             }).then(
                 (response) => {
                     if (!response.ok)
                         throw new Error(`HTTP Error. Status: ${response.status}`)
-                    console.log(response.json())
-                    return response.json()
+                    console.log(response)
+                    //return response
                 })
 
             setSuccessMessage('Thanks for contacting me!')
