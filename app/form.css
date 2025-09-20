@@ -1,0 +1,11 @@
+div.form-div {
+    width: 50%;
+    max-width: 500px;
+    margin: auto;
+}
+
+form.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../app/form.css";
 
 const ContactForm: React.FC = () => {
     const [successMessage, setSuccessMessage] = useState('')
@@ -22,7 +23,7 @@ const ContactForm: React.FC = () => {
                     if (!response.ok)
                         throw new Error(`HTTP Error. Status: ${response.status}`)
                     console.log(response)
-                    //return response
+                    return response
                 })
 
             setSuccessMessage('Thanks for contacting me!')
@@ -34,8 +35,8 @@ const ContactForm: React.FC = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="form-div">
+            <form onSubmit={handleSubmit} className="contact-form">
                 <label htmlFor="name">Name</label>
                 <input type="text" name="name" required />
 
