@@ -1,27 +1,41 @@
-import React, { useState } from "react";
-import "../app/form.css";
+import React, { useState } from "react"
+import "../app/form.css"
+
+interface FormValues {
+    name: string
+    email: string
+    message: string
+    subscribed: string
+}
+
 
 const ContactForm: React.FC = () => {
-    const [successMessage, setSuccessMessage] = useState('')
+    const [responseMessage, setResponseMessage] = useState<string>('')
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         const form = e.target as HTMLFormElement
-		const formValues = Object.fromEntries(new FormData(form).entries())
-        var sandboxed = JSON.parse(JSON.stringify(formValues))
+        const formValues = Object.fromEntries(new FormData(form).entries())
+
+        
+        const parsed = JSON.parse(JSON.stringify(formValues))
+        parsed['subscribed'] = formValues.subscribed === "on" ? true : false
+
+        // for testing - remove in production
+        var sandboxed = JSON.parse(JSON.stringify(parsed))
         sandboxed['sandboxed'] = true
+
+        console.log(sandboxed)
 
         try {
             await fetch("/api/contact-form", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                // body: JSON.stringify(formValues)
                 body: JSON.stringify(sandboxed)
             })
             .then(
                 (response) => {
-                    // a promise with the response message.
                     // read about promises
                     const data = response.text()
                     if (!response.ok) {
@@ -30,11 +44,12 @@ const ContactForm: React.FC = () => {
                     console.log(data)
                 })
 
-            setSuccessMessage('Thanks for contacting me!')
+            setResponseMessage('Thanks for contacting me!')
             form.reset()
+    
         } catch (err) {
             console.log(err)
-            setSuccessMessage("An error ocurred")
+            setResponseMessage("An error ocurred")
         }
     }
 
@@ -51,13 +66,13 @@ const ContactForm: React.FC = () => {
                 <input type="text" name="message" required />
 
                 <div>
-                    <label htmlFor="subscribe">Subscribe</label>
-                    <input type="checkbox" name="subscribe" defaultChecked></input>
+                    <label htmlFor="subscribed">Subscribe</label>
+                    <input type="checkbox" name="subscribed" defaultChecked></input>
                 </div>
 
                 <button type="submit">Submit</button>
 
-                {successMessage && <p>{successMessage}</p>}
+                {responseMessage && <p>{responseMessage}</p>}
 
 
             </form>
