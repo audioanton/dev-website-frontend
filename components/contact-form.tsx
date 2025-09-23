@@ -13,24 +13,28 @@ const ContactForm: React.FC = () => {
         sandboxed['sandboxed'] = true
 
         try {
-            await fetch("/api/mail", {
+            await fetch("/api/contact-form", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 // body: JSON.stringify(formValues)
                 body: JSON.stringify(sandboxed)
-            }).then(
+            })
+            .then(
                 (response) => {
-                    if (!response.ok)
+                    // a promise with the response message.
+                    // read about promises
+                    const data = response.text()
+                    if (!response.ok) {
                         throw new Error(`HTTP Error. Status: ${response.status}`)
-                    console.log(response)
-                    return response
+                    }
+                    console.log(data)
                 })
 
             setSuccessMessage('Thanks for contacting me!')
             form.reset()
         } catch (err) {
             console.log(err)
-            alert('an error ocurred')
+            setSuccessMessage("An error ocurred")
         }
     }
 
@@ -45,6 +49,11 @@ const ContactForm: React.FC = () => {
 
                 <label htmlFor="message">Message</label>
                 <input type="text" name="message" required />
+
+                <div>
+                    <label htmlFor="subscribe">Subscribe</label>
+                    <input type="checkbox" name="subscribe" defaultChecked></input>
+                </div>
 
                 <button type="submit">Submit</button>
 
