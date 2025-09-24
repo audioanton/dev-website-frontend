@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://api.example.com/:path*"
+      "destination": "https://dev-website-backend.onrender.com/:path*"
     }
   ]
 }
