@@ -11,23 +11,17 @@ const ContactForm: React.FC = () => {
         const form = e.target as HTMLFormElement
         const formValues = Object.fromEntries(new FormData(form).entries())
 
-        
         const parsedFormValues = JSON.parse(JSON.stringify(formValues))
         parsedFormValues['subscribed'] = formValues.subscribed === "on" ? true : false
-
-        // for testing - remove in production
-        var sandboxed = JSON.parse(JSON.stringify(parsedFormValues))
-        sandboxed['sandboxed'] = true
 
         try {
             await fetch("/api/contact-form", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(sandboxed)
+                body: JSON.stringify(parsedFormValues)
             })
             .then(
                 (response) => {
-                    // read about promises
                     const data = response.text()
                     if (!response.ok) {
                         throw new Error(`HTTP Error. Status: ${response.status}`)
@@ -46,15 +40,12 @@ const ContactForm: React.FC = () => {
 
     return (
         <div className={styles.formDiv}>
+            <h3 className={styles.title}>Contact Me</h3>
+
             <form onSubmit={handleSubmit} className={styles.contactForm}>
-                <label htmlFor="name">Name</label>
-                <input className={styles.formInput} type="text" name="name" required />
-
-                <label htmlFor="email">Email</label>
-                <input className={styles.formInput} type="text" name="email" required />
-
-                <label htmlFor="message">Message</label>
-                <input className={styles.formInput} type="text" name="message" required />
+                <TextInput fieldName="Name" />
+                <TextInput fieldName="Email" />
+                <TextInput fieldName="Message" />
 
                 <div>
                     <label htmlFor="subscribed">Subscribe</label>
@@ -65,10 +56,18 @@ const ContactForm: React.FC = () => {
 
                 {responseMessage && <p>{responseMessage}</p>}
 
-
             </form>
         </div>
     );
 };
+
+function TextInput({fieldName}: {fieldName: string}) {
+    return (
+        <>
+            <label htmlFor={fieldName}>{fieldName}</label>
+            <input className={styles.formInput} type="text" name={fieldName.toLowerCase()} required />
+        </>
+    )
+}
 
 export default ContactForm;

@@ -1,18 +1,25 @@
 'use client'
 
-import ContactForm from '@/components/ContactForm';
-import Image from 'next/image';
+import ContactForm from '@/app/ui/components/ContactForm';
+import ProjectCard from './ui/components/ProjectCard';
+import { ProjectData } from './ui/components/ProjectCard';
 
 export default function Home() {
+  const project: ProjectData = {
+    title: "Music Website",
+    description: "My personal website where I display my music and blog. Built using Jekyll and hosted on Github Pages.",
+    url: "https://github.com/audioanton/site",
+    imageUrl: "/blog.png",
+    imageWidth: 500,
+    imageHeight: 220,
+    imageAlt: "a code snippet from my website project"
+  }
+  
   return (
     <>
-    <ContactForm />
-    <Image
-      src="/public/globe.svg"
-      alt="globe"
-      width={300}
-      height={300}
-    />
+      <h2>Projects</h2>
+      <ProjectCard data={project} />
+      <ContactForm />
     </>
   );
 }

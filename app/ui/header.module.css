@@ -1,0 +1,13 @@
+.headline {
+    font-size: xx-large;
+}
+
+.headerDiv {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 4rem;
+}
+
+.headerDiv > a {
+    font-style: italic;
+}

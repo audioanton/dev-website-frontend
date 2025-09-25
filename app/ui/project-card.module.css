@@ -1,0 +1,17 @@
+.title {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.image {
+    max-width: 70%;
+    padding-bottom: 1rem;
+}
+
+.description {
+    padding-bottom: 1rem;
+}
+
+.project {
+    padding-bottom: 1rem;
+}

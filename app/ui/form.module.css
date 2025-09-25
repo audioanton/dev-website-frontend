@@ -1,13 +1,12 @@
-.formDiv {
-    width: 50%;
-    max-width: 500px;
-    margin: auto;
-}
-
 .contactForm {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.title {
+  font-size: x-large;
+  font-weight: bold;
 }
 
 @media (prefers-color-scheme: dark) {
