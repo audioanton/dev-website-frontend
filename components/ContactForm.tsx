@@ -48,20 +48,20 @@ const ContactForm: React.FC = () => {
         <div className={styles.formDiv}>
             <form onSubmit={handleSubmit} className={styles.contactForm}>
                 <label htmlFor="name">Name</label>
-                <input type="text" name="name" required />
+                <input className={styles.formInput} type="text" name="name" required />
 
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" required />
+                <input className={styles.formInput} type="text" name="email" required />
 
                 <label htmlFor="message">Message</label>
-                <input type="text" name="message" required />
+                <input className={styles.formInput} type="text" name="message" required />
 
                 <div>
                     <label htmlFor="subscribed">Subscribe</label>
                     <input type="checkbox" name="subscribed" defaultChecked></input>
                 </div>
 
-                <button type="submit">Submit</button>
+                <button className={styles.formInput} type="submit">Submit</button>
 
                 {responseMessage && <p>{responseMessage}</p>}
 
