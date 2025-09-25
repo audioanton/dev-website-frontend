@@ -1,6 +1,6 @@
 'use client'
 
-import ContactForm from '@/components/contact-form.tsx';
+import ContactForm from '@/components/ContactForm';
 
 export default function Home() {
   return (

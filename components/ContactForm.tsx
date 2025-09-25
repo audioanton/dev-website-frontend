@@ -1,12 +1,5 @@
 import React, { useState } from "react"
-import "../app/form.css"
-
-interface FormValues {
-    name: string
-    email: string
-    message: string
-    subscribed: string
-}
+import styles from "@/app/ui/form.module.css"
 
 
 const ContactForm: React.FC = () => {
@@ -19,14 +12,12 @@ const ContactForm: React.FC = () => {
         const formValues = Object.fromEntries(new FormData(form).entries())
 
         
-        const parsed = JSON.parse(JSON.stringify(formValues))
-        parsed['subscribed'] = formValues.subscribed === "on" ? true : false
+        const parsedFormValues = JSON.parse(JSON.stringify(formValues))
+        parsedFormValues['subscribed'] = formValues.subscribed === "on" ? true : false
 
         // for testing - remove in production
-        var sandboxed = JSON.parse(JSON.stringify(parsed))
+        var sandboxed = JSON.parse(JSON.stringify(parsedFormValues))
         sandboxed['sandboxed'] = true
-
-        console.log(sandboxed)
 
         try {
             await fetch("/api/contact-form", {
@@ -54,8 +45,8 @@ const ContactForm: React.FC = () => {
     }
 
     return (
-        <div className="form-div">
-            <form onSubmit={handleSubmit} className="contact-form">
+        <div className={styles.formDiv}>
+            <form onSubmit={handleSubmit} className={styles.contactForm}>
                 <label htmlFor="name">Name</label>
                 <input type="text" name="name" required />
 

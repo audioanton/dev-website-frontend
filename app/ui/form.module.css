@@ -1,10 +1,10 @@
-div.form-div {
+.formDiv {
     width: 50%;
     max-width: 500px;
     margin: auto;
 }
 
-form.contact-form {
+.contactForm {
     display: flex;
     flex-direction: column;
     gap: 5px;
