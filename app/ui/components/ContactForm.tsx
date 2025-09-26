@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styles from "@/app/ui/form.module.css"
+import { error } from "console";
 
 
 const ContactForm: React.FC = () => {
@@ -7,6 +8,7 @@ const ContactForm: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setResponseMessage('')
 
         const form = e.target as HTMLFormElement
         const formValues = Object.fromEntries(new FormData(form).entries())
@@ -15,26 +17,26 @@ const ContactForm: React.FC = () => {
         parsedFormValues['subscribed'] = formValues.subscribed === "on" ? true : false
 
         try {
-            await fetch("/api/contact-form", {
+            const response = await fetch("/api/contact-form", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(parsedFormValues)
             })
-            .then(
-                (response) => {
-                    const data = response.text()
-                    if (!response.ok) {
-                        throw new Error(`HTTP Error. Status: ${response.status}`)
-                    }
-                    console.log(data)
-                })
+
+            if(!response.ok) {
+                const res = await response.json()
+                if (res['errors']) {
+                    const errors = res['errors'].join(", ")
+                    setResponseMessage(errors)
+                }  
+                throw new Error('HTTP error')
+            }
 
             setResponseMessage('Thanks for contacting me!')
             form.reset()
     
         } catch (err) {
             console.log(err)
-            setResponseMessage("An error ocurred")
         }
     }
 
@@ -52,7 +54,7 @@ const ContactForm: React.FC = () => {
                     <input type="checkbox" name="subscribed" defaultChecked></input>
                 </div>
 
-                <button className={styles.formInput} type="submit">Submit</button>
+                <button className={`${styles.formInput} ${styles.formButton}`} type="submit">Submit</button>
 
                 {responseMessage && <p>{responseMessage}</p>}
 

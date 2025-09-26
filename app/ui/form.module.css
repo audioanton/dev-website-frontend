@@ -1,3 +1,15 @@
+:root {
+  --border-color: #171717; 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border-color: #ffffff;
+  }
+}
+
+
+
 .contactForm {
     display: flex;
     flex-direction: column;
@@ -8,6 +20,18 @@
 .title {
   font-size: x-large;
   font-weight: bold;
+}
+
+.formInput {
+  border: 1px solid var(--border-color);
+}
+
+.formButton:hover {
+    background-color: orange;
+}
+
+.formButton:active {
+  background-color: gray;
 }
 
 @media (prefers-color-scheme: dark) {
