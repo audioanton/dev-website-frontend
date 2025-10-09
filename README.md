@@ -41,6 +41,13 @@ Edit the following in `vercel.json` to match your backend-url:
   ]
 ```
 
+### Build docker container
+docker build -t dev-website-frontend .
+
+### Run docker container
+docker run -d -p 3000:3000 -e NEXT_PUBLIC_BACKEND_URL=<your-backend-url>
+ --rm --name frontend dev-website-fe:latest
+
 ### Frameworks/languages:
 - Next.js
 - React.js
