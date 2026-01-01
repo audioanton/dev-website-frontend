@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "@/app/ui/form.module.css";
-import { error } from "console";
 
 const ContactForm: React.FC = () => {
   const [responseMessage, setResponseMessage] = useState<string>("");
@@ -16,27 +15,22 @@ const ContactForm: React.FC = () => {
     parsedFormValues["subscribed"] =
       formValues.subscribed === "on" ? true : false;
 
-    try {
-      const response = await fetch("/api/contact-form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsedFormValues),
-      });
-
-      if (!response.ok) {
-        const res = await response.json();
-        if (res["errors"]) {
-          const errors = res["errors"].join(", ");
-          setResponseMessage(errors);
-        }
-        throw new Error("HTTP error");
+    fetch("/api/contact-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(parsedFormValues),
+    }).then((response) => {
+      if (response.ok) {
+        setResponseMessage("Message sent, thank you!");
+      } else {
+        response.json().then((error) => {
+          setResponseMessage(`Something went wrong: ${error["Errors"]}`);
+        });
       }
+    });
 
-      setResponseMessage("Thanks for contacting me!");
-      form.reset();
-    } catch (err) {
-      console.log(err);
-    }
+    setResponseMessage("Sending Message");
+    form.reset();
   };
 
   return (
