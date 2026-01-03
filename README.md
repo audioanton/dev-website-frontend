@@ -26,8 +26,8 @@ async rewrites() {
 
 ### Install dependencies and run frontend:
 ```
-npm i
-npm run dev
+pnpm i
+pnpm run dev
 ```
 
 ### Deploy at vercel.com:

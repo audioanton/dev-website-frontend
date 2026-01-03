@@ -1,12 +1,12 @@
-import React, { useState } from "react";
 import styles from "@/app/ui/form.module.css";
 
-const ContactForm: React.FC = () => {
-  const [responseMessage, setResponseMessage] = useState<string>("");
+interface ContactFormProps {
+  message: (message: string, status: "success" | "error" | "info") => void;
+}
 
+const ContactForm: React.FC<ContactFormProps> = ({ message }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setResponseMessage("");
 
     const form = e.target as HTMLFormElement;
     const formValues = Object.fromEntries(new FormData(form).entries());
@@ -21,42 +21,42 @@ const ContactForm: React.FC = () => {
       body: JSON.stringify(parsedFormValues),
     }).then((response) => {
       if (response.ok) {
-        setResponseMessage("Message sent, thank you!");
+        message("Message sent, thank you!", "success");
       } else {
         response.json().then((error) => {
-          setResponseMessage(`Something went wrong: ${error["Errors"]}`);
+          message(`Something went wrong: ${error["Errors"]}`, "error");
         });
       }
     });
 
-    setResponseMessage("Sending Message");
+    message("Sending Message", "info");
     form.reset();
   };
 
   return (
-    <div className={styles.formDiv}>
-      <h3 className={styles.title}>Contact Me</h3>
+    <>
+      <div id="formDiv" className={styles.formDiv}>
+        <h3 className={styles.title}>Contact Me</h3>
 
-      <form onSubmit={handleSubmit} className={styles.contactForm}>
-        <TextInput fieldName="Name" />
-        <TextInput fieldName="Email" />
-        <TextInput fieldName="Message" />
+        <form onSubmit={handleSubmit} className={styles.contactForm}>
+          <TextInput fieldName="Name" />
+          <TextInput fieldName="Email" />
+          <TextInput fieldName="Message" />
 
-        <div>
-          <label htmlFor="subscribed">Subscribe</label>
-          <input type="checkbox" name="subscribed" defaultChecked></input>
-        </div>
+          <div>
+            <label htmlFor="subscribed">Subscribe</label>
+            <input type="checkbox" name="subscribed" defaultChecked></input>
+          </div>
 
-        <button
-          className={`${styles.formInput} ${styles.formButton}`}
-          type="submit"
-        >
-          Submit
-        </button>
-
-        {responseMessage && <p>{responseMessage}</p>}
-      </form>
-    </div>
+          <button
+            className={`${styles.formInput} ${styles.formButton}`}
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
