@@ -1,0 +1,26 @@
+.modal {
+    position: absolute;
+    width: 80vw;
+
+    padding: 2rem;
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem 0.25rem hsl(0 0% 0% / 10%);
+    top: 20%;
+    margin: auto;
+}
+
+.modalCloseBtn {
+    font-size: 0.75em;
+    position: absolute;
+    top: 0.25em;
+    right: 0.25em;
+}
+
+.modalButton {
+    cursor: pointer;
+}
+
+.modal::backdrop {
+    background: hsl(0 0% 0% / 50%);
+}
