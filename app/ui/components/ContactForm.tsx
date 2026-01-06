@@ -1,10 +1,11 @@
 import styles from "@/app/ui/form.module.css";
+import messageStyles from "@/app/ui/message.module.css";
 
 interface ContactFormProps {
-  message: (message: string, status: "success" | "error" | "info") => void;
+  closeModal?: () => void;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ message }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ closeModal }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -15,6 +16,25 @@ const ContactForm: React.FC<ContactFormProps> = ({ message }) => {
     parsedFormValues["subscribed"] =
       formValues.subscribed === "on" ? true : false;
 
+    const message = (message: string, status: "success" | "error" | "info") => {
+      const messageDiv = document.getElementById("messageContainer");
+
+      if (!messageDiv) return;
+
+      messageDiv.classList.remove(
+        messageStyles["success"],
+        messageStyles["info"],
+        messageStyles["error"],
+      );
+      messageDiv.classList.add(messageStyles[status]);
+      messageDiv.textContent = message;
+
+      setTimeout(() => {
+        messageDiv.classList.remove(messageStyles[status]);
+        messageDiv.textContent = "";
+      }, 3000);
+    };
+
     fetch("/api/contact-form", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -23,39 +43,46 @@ const ContactForm: React.FC<ContactFormProps> = ({ message }) => {
       if (response.ok) {
         message("Message sent, thank you!", "success");
       } else {
-        response.json().then((error) => {
-          message(`Something went wrong: ${error["Errors"]}`, "error");
-        });
+        response
+          .json()
+          .then((error) => {
+            message(`Something went wrong: ${error["Errors"]}`, "error");
+          })
+          .catch((error: SyntaxError) => {
+            message("Something went wrong!", "error");
+          });
       }
     });
 
     message("Sending Message", "info");
     form.reset();
+
+    if (closeModal) {
+      closeModal();
+    }
   };
 
   return (
     <>
-      <div id="formDiv" className={styles.formDiv}>
-        <h3 className={styles.title}>Contact Me</h3>
+      <h3 className={styles.title}>Contact Me</h3>
 
-        <form onSubmit={handleSubmit} className={styles.contactForm}>
-          <TextInput fieldName="Name" />
-          <TextInput fieldName="Email" />
-          <TextInput fieldName="Message" />
+      <form onSubmit={handleSubmit} className={styles.contactForm}>
+        <TextInput fieldName="Name" />
+        <TextInput fieldName="Email" />
+        <TextInput fieldName="Message" />
 
-          <div>
-            <label htmlFor="subscribed">Subscribe</label>
-            <input type="checkbox" name="subscribed" defaultChecked></input>
-          </div>
+        <div>
+          <label htmlFor="subscribed">Subscribe</label>
+          <input type="checkbox" name="subscribed" defaultChecked></input>
+        </div>
 
-          <button
-            className={`${styles.formInput} ${styles.formButton}`}
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+        <button
+          className={`${styles.formInput} ${styles.formButton}`}
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
     </>
   );
 };

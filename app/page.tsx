@@ -2,7 +2,6 @@
 
 import ProjectCard from "./ui/components/ProjectCard";
 import { ProjectData } from "./ui/components/ProjectCard";
-import FormContainer from "./ui/components/FormContainer";
 
 export default function Home() {
   const project: ProjectData = {
@@ -20,7 +19,7 @@ export default function Home() {
     <>
       <h2>Projects</h2>
       <ProjectCard data={project} />
-      <FormContainer useModal={true} />
+      <div id="messageContainer"></div>
     </>
   );
 }

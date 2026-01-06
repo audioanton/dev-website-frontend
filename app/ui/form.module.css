@@ -8,14 +8,6 @@
     }
 }
 
-.hidden {
-    display: none;
-}
-
-.formDiv {
-    display: block;
-}
-
 .contactForm {
     display: flex;
     flex-direction: column;
