@@ -5,10 +5,23 @@ import ContactForm from "./ContactForm";
 
 interface Props {
   useModal: boolean;
+  buttonLabel?: string;
 }
 
-const FormContainer: React.FC<Props> = ({ useModal }) => {
+const FormContainer: React.FC<Props> = ({
+  useModal,
+  buttonLabel = "Contact Me",
+}) => {
   const [[message, status], setMessage] = useState<[string, string]>(["", ""]);
+  const [open, setOpen] = useState(false);
+
+  const openModal = () => {
+    setOpen(true);
+  };
+
+  const closeModal = () => {
+    setOpen(false);
+  };
 
   const fadeOut = () => {
     setTimeout(() => {
@@ -28,7 +41,16 @@ const FormContainer: React.FC<Props> = ({ useModal }) => {
 
   return (
     <>
-      {useModal ? <Modal content={form} buttonLabel="Contact Me" /> : form}
+      {useModal ? (
+        <>
+          <button className={styles.modalButton} onClick={openModal}>
+            {buttonLabel}
+          </button>
+          <Modal isOpen={open} onClose={closeModal} content={form} />
+        </>
+      ) : (
+        form
+      )}
       <div className={styles[status]}>{message}</div>
     </>
   );

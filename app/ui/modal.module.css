@@ -22,5 +22,5 @@
 }
 
 .modal::backdrop {
-    background: hsl(0 0% 0% / 50%);
+    background: hsl(50 50% 50% / 50%);
 }
