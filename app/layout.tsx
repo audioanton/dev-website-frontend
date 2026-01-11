@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/ui/components/Header"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "@/app/ui/components/Header";
 
 export const metadata: Metadata = {
   title: "Contact me",
@@ -26,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={'bg-[--secondary-color]'} antialiased`}
       >
         <Header title="Anton" subtitle="Software Developer" />
         {children}
