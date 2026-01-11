@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/ui/components/Header";
+import { Inter_Tight } from "next/font/google";
+
+const inter = Inter_Tight({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Contact me",
@@ -14,10 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={'bg-[--secondary-color]'} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`bg-(--secondary-color) text-(--primary-color) ${inter.className} tracking-tight`}
+    >
+      <body className={`antialized`}>
         <Header title="Anton" subtitle="Software Developer" />
         {children}
       </body>

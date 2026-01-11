@@ -1,11 +1,24 @@
 @import "tailwindcss";
 
-root: {
+:root {
     --primary-color: black;
     --secondary-color: #b1dff5;
 }
 
+@utility text-narrowed {
+    transform: scale(0.8, 1);
+    display: inline-block; /* Transforms require block/inline-block */
+    transform-origin: left;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+}
+
 @media (prefers-color-scheme: dark) {
-    --primary-color: #76a534;
-    --secondary-color: #040602;
+    :root {
+        --primary-color: #76a534;
+        --secondary-color: #040602;
+    }
 }
