@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/app/ui/components/Header";
 import { Inter_Tight } from "next/font/google";
 
 const inter = Inter_Tight({
@@ -8,8 +7,8 @@ const inter = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Contact me",
-  description: "Fill in form to get in touch with me",
+  title: "",
+  description: "",
 };
 
 export default function RootLayout({
@@ -18,14 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`bg-(--secondary-color) text-(--primary-color) ${inter.className} tracking-tight`}
-    >
-      <body className={`antialized`}>
-        <Header title="Anton" subtitle="Software Developer" />
-        {children}
-      </body>
+    <html lang="en" className={`${inter.className}`}>
+      <body className={`antialized`}>{children}</body>
     </html>
   );
 }
