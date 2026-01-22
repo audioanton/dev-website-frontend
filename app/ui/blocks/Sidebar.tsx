@@ -26,6 +26,7 @@ const Sidebar = (props: SidebarProps) => {
         <div className="flex flex-col items-start absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
           sidebar content
           <button onClick={() => props.setPageName("clicked")}>click</button>
+          <button onClick={() => props.loadContent("questlog")}>load</button>
         </div>
       </div>
       {/*
