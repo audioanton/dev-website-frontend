@@ -4,17 +4,18 @@ import Header from "@/app/ui/blocks/Header";
 import Sidebar from "@/app/ui/blocks/Sidebar";
 import Main from "@/app/ui/blocks/Main";
 import Questlog from "./ui/sections/Questlog";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
   const [title, setTitle] = useState("Home");
-  const [sectionClasses, setSectionClasses] = useState([
-    "",
-    "hidden",
-    "hidden",
-    "hidden",
-    "hidden",
-  ]);
+  const [hiddenSections, setHiddenSections] = useState<boolean[]>([false, true, true, true, true]);
+
+  const toggleSection = (index: number) => {
+  setHiddenSections(prev => 
+    prev.map((isHidden, i) => (i === index ? !isHidden : isHidden))
+  );
+};
 
   const sections = {
     questlog: <Questlog />,
@@ -28,19 +29,11 @@ export default function Home() {
     setTitle(title);
   };
 
-  const toggleSection = (section: string) => {
-    const mutated = sectionClasses;
-    mutated[0] = mutated[0] === "hidden" ? "" : "hidden";
-    console.log(mutated);
-    setSectionClasses(mutated);
-    console.log(sectionClasses);
-  };
-
   return (
     <>
       <Header title={title} subtitle="Software Developer" />
       <Sidebar setPageName={setHeaderTitle} loadContent={toggleSection} />
-      <Main children={sections.questlog} hidden={sectionClasses[0]} />
+      <Main children={sections.questlog} hidden={hiddenSections[0]} />
       <Main children={sections.party} />
       <Main children={sections.contact} />
       <Main children={sections.cookies} />

@@ -4,9 +4,9 @@ interface SidebarProps {
   // function defined in page to set Header page title
   setPageName: (page: string) => void;
   // function defined in page.tsx to load content based on name
-  loadContent: (content: string) => void;
+  loadContent: (index: number) => void;
   // "quest log", "party"
-  content: string[];
+  // content: string[];
 }
 
 const Sidebar = (props: SidebarProps) => {
@@ -26,7 +26,7 @@ const Sidebar = (props: SidebarProps) => {
         <div className="flex flex-col items-start absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
           sidebar content
           <button onClick={() => props.setPageName("clicked")}>click</button>
-          <button onClick={() => props.loadContent("questlog")}>load</button>
+          <button onClick={() => props.loadContent(0)}>load</button>
         </div>
       </div>
       {/*
