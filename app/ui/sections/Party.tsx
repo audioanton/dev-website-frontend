@@ -1,5 +1,5 @@
 const Party = () => {
-  return <></>;
+  return <>Party</>;
 };
 
 export default Party;

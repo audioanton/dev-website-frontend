@@ -1,15 +1,11 @@
 "use client";
 
 interface SidebarProps {
-  // function defined in page to set Header page title
-  setPageName: (page: string) => void;
-  // function defined in page.tsx to load content based on name
-  loadContent: (index: number) => void;
-  // "quest log", "party"
-  // content: string[];
+  select: (section: string) => void;
+  content: string[];
 }
 
-const Sidebar = (props: SidebarProps) => {
+const Sidebar = ({ select, content }: SidebarProps) => {
   const openMobileMenu = () => {
     // open
   };
@@ -20,13 +16,15 @@ const Sidebar = (props: SidebarProps) => {
       <div className="hidden md:block absolute right-0 top-0 w-1/4 h-full bg-blue-900 text-white">
         <div className="absolute h-[125px] w-full bg-pink-800">
           <div className="absolute bottom-0 px-[20px] py-[15px] xl:px-[50px]">
-            sidebar header
+            Menu
           </div>
         </div>
         <div className="flex flex-col items-start absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
-          sidebar content
-          <button onClick={() => props.setPageName("clicked")}>click</button>
-          <button onClick={() => props.loadContent(0)}>load</button>
+          {content.map((section, index) => (
+            <button key={index} onClick={() => select(section)}>
+              {section}
+            </button>
+          ))}
         </div>
       </div>
       {/*

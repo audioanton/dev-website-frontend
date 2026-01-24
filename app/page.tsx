@@ -4,40 +4,73 @@ import Header from "@/app/ui/blocks/Header";
 import Sidebar from "@/app/ui/blocks/Sidebar";
 import Main from "@/app/ui/blocks/Main";
 import Questlog from "./ui/sections/Questlog";
+import Contact from "./ui/sections/Contact";
+import Party from "./ui/sections/Party";
+import Policy from "./ui/sections/Policy";
 import React, { useState } from "react";
-import { useEffect } from "react";
 
 export default function Home() {
-  const [title, setTitle] = useState("Home");
-  const [hiddenSections, setHiddenSections] = useState<boolean[]>([false, true, true, true, true]);
+  const [focusedSection, setFocusedSection] = useState("Questlog");
 
-  const toggleSection = (index: number) => {
-  setHiddenSections(prev => 
-    prev.map((isHidden, i) => (i === index ? !isHidden : isHidden))
-  );
-};
+  const sections = [
+    {
+      name: "Questlog",
+      jsx: <Questlog />,
+    },
+    {
+      name: "Party",
+      jsx: <Party />,
+    },
+    {
+      name: "Cookies",
+      jsx: <Policy title="Cookies" />,
+    },
+    {
+      name: "Privacy",
+      jsx: <Policy title="Privacy" />,
+    },
+    {
+      name: "Contact",
+      jsx: <Contact />,
+    },
+  ];
 
-  const sections = {
-    questlog: <Questlog />,
-    party: <></>,
-    cookies: <></>,
-    privacy: <></>,
-    contact: <></>,
-  };
-
-  const setHeaderTitle = (title: string): void => {
-    setTitle(title);
+  const selectSection = (title: string): void => {
+    setFocusedSection(title);
   };
 
   return (
     <>
-      <Header title={title} subtitle="Software Developer" />
-      <Sidebar setPageName={setHeaderTitle} loadContent={toggleSection} />
-      <Main children={sections.questlog} hidden={hiddenSections[0]} />
-      <Main children={sections.party} />
-      <Main children={sections.contact} />
-      <Main children={sections.cookies} />
-      <Main children={sections.privacy} />
+      <Header title="ANTON" subtitle={focusedSection} />
+      <Sidebar
+        select={selectSection}
+        content={sections.map((section) => section.name)}
+      />
+      <Main
+        children={sections[0].jsx}
+        name={sections[0].name}
+        selection={focusedSection}
+      />
+      <Main
+        children={sections[1].jsx}
+        name={sections[1].name}
+        selection={focusedSection}
+      />
+      <Main
+        children={sections[2].jsx}
+        name={sections[2].name}
+        selection={focusedSection}
+      />
+      <Main
+        children={sections[3].jsx}
+        name={sections[3].name}
+        selection={focusedSection}
+      />
+      <Main
+        children={sections[4].jsx}
+        name={sections[4].name}
+        selection={focusedSection}
+      />
     </>
   );
 }

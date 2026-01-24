@@ -1,15 +1,14 @@
 "use client";
 
 import { PropsWithChildren } from "react";
-import { useEffect } from "react";
 
 interface mainProps extends PropsWithChildren {
-  hidden: boolean;
+  name: string;
+  selection: string;
 }
 
-const Main = ({ hidden, children }: mainProps) => {
-
-  let hiddenClass = hidden ? 'hidden' : '';
+const Main = ({ name, selection, children }: mainProps) => {
+  let hiddenClass = name === selection ? "" : "hidden";
 
   return (
     <div
