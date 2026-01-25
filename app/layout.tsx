@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter_Tight } from "next/font/google";
+import { Saira_Condensed } from "next/font/google";
 
-const inter = Inter_Tight({
+const saira = Saira_Condensed({
+  weight: "500",
   subsets: ["latin"],
 });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.className}`}>
+    <html lang="en" className={`${saira.className} text-neutral-300`}>
       <body className={`antialized`}>{children}</body>
     </html>
   );

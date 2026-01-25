@@ -8,6 +8,17 @@ import Contact from "./ui/sections/Contact";
 import Party from "./ui/sections/Party";
 import Policy from "./ui/sections/Policy";
 import React, { useState } from "react";
+import { Noto_Sans, Saira_Condensed } from "next/font/google";
+
+const notoSans = Noto_Sans({
+  weight: "variable",
+  subsets: ["latin"],
+});
+
+const sairaBold = Saira_Condensed({
+  weight: "700",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   const [focusedSection, setFocusedSection] = useState("Questlog");
@@ -41,10 +52,11 @@ export default function Home() {
 
   return (
     <>
-      <Header title="ANTON" subtitle={focusedSection} />
+      <Header title="ANTON" subtitle={focusedSection} titleFont={notoSans} />
       <Sidebar
         select={selectSection}
         content={sections.map((section) => section.name)}
+        menuFont={notoSans}
       />
       <Main
         children={sections[0].jsx}
