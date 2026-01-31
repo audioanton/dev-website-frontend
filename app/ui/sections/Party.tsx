@@ -34,9 +34,9 @@ const Party = ({ fonts }: PartyProps) => {
         level={-12450}
         strength={999}
         wisdom={999}
-        status="enraged"
+        status="hidden"
         abilities={[]}
-        ultimate="sneak attack"
+        ultimate="privacy punch"
         fonts={fonts}
       />
       <PartyMember

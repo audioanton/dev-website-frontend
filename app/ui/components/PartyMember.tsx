@@ -80,9 +80,9 @@ const PartyMember = (props: PartyMemberProps) => {
         {/* card stats */}
         <div className="h-40">
           <div>
-            <span className="flex justify-between">
+            <span className="flex justify-between items-end">
               <h3
-                className={`mx-2 text-shadow-lg/30 text-shadow-black text-2xl`}
+                className={`mx-2 text-shadow-lg/30 text-shadow-black text-4xl`}
               >
                 {props.name}
               </h3>
