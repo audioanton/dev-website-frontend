@@ -1,19 +1,20 @@
 "use client";
 
-import { PropsWithChildren } from "react";
+import { ReactNode } from "react";
 
-interface mainProps extends PropsWithChildren {
+interface mainProps {
   name: string;
   selection: string;
+  content: ReactNode;
 }
 
-const Main = ({ name, selection, children }: mainProps) => {
+const Main = ({ name, selection, content }: mainProps) => {
   let hiddenClass = name === selection ? "" : "hidden";
 
   return (
     <div className={`w-full h-screen md:w-3/4  bg-blue-500 ${hiddenClass}`}>
-      <div className="absolute top-[125px]">
-        <div className="px-[50px] py-[15px] xl:px-[300px]">{children}</div>
+      <div className="absolute top-[125px] w-full md:w-3/4">
+        <div className="px-[50px] py-[15px] xl:px-[300px]">{content}</div>
       </div>
     </div>
   );

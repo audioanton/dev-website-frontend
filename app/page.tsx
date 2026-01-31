@@ -20,6 +20,11 @@ const sairaBold = Saira_Condensed({
   subsets: ["latin"],
 });
 
+const fonts = {
+  first: notoSans,
+  second: sairaBold,
+};
+
 export default function Home() {
   const [focusedSection, setFocusedSection] = useState("Questlog");
 
@@ -59,27 +64,27 @@ export default function Home() {
         menuFont={notoSans}
       />
       <Main
-        children={sections[0].jsx}
+        content={sections[0].jsx}
         name={sections[0].name}
         selection={focusedSection}
       />
       <Main
-        children={sections[1].jsx}
+        content={sections[1].jsx}
         name={sections[1].name}
         selection={focusedSection}
       />
       <Main
-        children={sections[2].jsx}
+        content={sections[2].jsx}
         name={sections[2].name}
         selection={focusedSection}
       />
       <Main
-        children={sections[3].jsx}
+        content={sections[3].jsx}
         name={sections[3].name}
         selection={focusedSection}
       />
       <Main
-        children={sections[4].jsx}
+        content={sections[4].jsx}
         name={sections[4].name}
         selection={focusedSection}
       />
