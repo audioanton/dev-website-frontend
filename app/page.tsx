@@ -35,7 +35,7 @@ export default function Home() {
     },
     {
       name: "Party",
-      jsx: <Party />,
+      jsx: <Party fonts={fonts} />,
     },
     {
       name: "Cookies",
