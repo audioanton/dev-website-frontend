@@ -11,7 +11,11 @@ interface PartyMemberProps {
   strength: number;
   wisdom: number;
   status: string;
-  abilities: string[];
+  abilities: {
+    first: string;
+    second: string;
+    third: string;
+  };
   ultimate: string;
   fonts: {
     first: NextFont;
@@ -172,6 +176,18 @@ const PartyMember = (props: PartyMemberProps) => {
                   className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
                 >
                   {props.ultimate}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td className="align-top">Abilites</td>
+              <td>
+                <span className={`italic ${outlineDark} text-sm`}>
+                  <ul>
+                    <li>{props.abilities.first}</li>
+                    <li>{props.abilities.second}</li>
+                    <li>{props.abilities.third}</li>
+                  </ul>
                 </span>
               </td>
             </tr>

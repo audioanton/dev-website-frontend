@@ -22,7 +22,11 @@ const Party = ({ fonts }: PartyProps) => {
         strength={95}
         wisdom={43}
         status="confused"
-        abilities={[]}
+        abilities={{
+          first: "Nerd Out",
+          second: "DROP DATABASE;",
+          third: "Throw Exception",
+        }}
         ultimate="silly face"
         fonts={fonts}
       />
@@ -35,7 +39,11 @@ const Party = ({ fonts }: PartyProps) => {
         strength={999}
         wisdom={999}
         status="enraged"
-        abilities={[]}
+        abilities={{
+          first: "Master Plan",
+          second: "Meditation",
+          third: "Knit Kick",
+        }}
         ultimate="sneak attack"
         fonts={fonts}
       />
@@ -48,7 +56,11 @@ const Party = ({ fonts }: PartyProps) => {
         strength={2}
         wisdom={10}
         status="sleepy"
-        abilities={[]}
+        abilities={{
+          first: "Big Stretch",
+          second: "Scratch Couch",
+          third: "Smelly Poop",
+        }}
         ultimate="Zoomies"
         fonts={fonts}
       />
