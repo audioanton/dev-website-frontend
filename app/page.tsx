@@ -1,25 +1,97 @@
-'use client'
+"use client";
 
-import ContactForm from '@/app/ui/components/ContactForm';
-import ProjectCard from './ui/components/ProjectCard';
-import { ProjectData } from './ui/components/ProjectCard';
+import Header from "@/app/ui/blocks/Header";
+import Sidebar from "@/app/ui/blocks/Sidebar";
+import Main from "@/app/ui/blocks/Main";
+import Questlog from "./ui/sections/Questlog";
+import Contact from "./ui/sections/Contact";
+import Party from "./ui/sections/Party";
+import Policy from "./ui/sections/Policy";
+import React, { useState } from "react";
+import { Noto_Sans, Saira_Condensed } from "next/font/google";
+
+const notoSans = Noto_Sans({
+  weight: "variable",
+  subsets: ["latin"],
+});
+
+const sairaBold = Saira_Condensed({
+  weight: "700",
+  subsets: ["latin"],
+});
+
+const fonts = {
+  first: notoSans,
+  second: sairaBold,
+};
 
 export default function Home() {
-  const project: ProjectData = {
-    title: "Music Website",
-    description: "My personal website where I display my music and blog. Built using Jekyll and hosted on Github Pages.",
-    url: "https://github.com/audioanton/site",
-    imageUrl: "/blog.png",
-    imageWidth: 500,
-    imageHeight: 220,
-    imageAlt: "a code snippet from my website project"
-  }
-  
+  const [focusedSection, setFocusedSection] = useState("Questlog");
+
+  const sections = [
+    {
+      name: "Questlog",
+      jsx: <Questlog font={sairaBold} />,
+    },
+    {
+      name: "Party",
+      jsx: <Party fonts={fonts} />,
+    },
+    {
+      name: "Cookies",
+      jsx: <Policy title="Cookies" />,
+    },
+    {
+      name: "Privacy",
+      jsx: <Policy title="Privacy" />,
+    },
+    {
+      name: "Contact",
+      jsx: <Contact />,
+    },
+  ];
+
+  const selectSection = (title: string): void => {
+    setFocusedSection(title);
+  };
+
   return (
     <>
-      <h2>Projects</h2>
-      <ProjectCard data={project} />
-      <ContactForm />
+      <Header
+        title="ANTON Dev VII"
+        subtitle={focusedSection}
+        titleFont={notoSans}
+      />
+      <Sidebar
+        select={selectSection}
+        content={sections.map((section) => section.name)}
+        menuFont={notoSans}
+      />
+      <Main
+        content={sections[0].jsx}
+        name={sections[0].name}
+        selection={focusedSection}
+      />
+      <Main
+        content={sections[1].jsx}
+        name={sections[1].name}
+        selection={focusedSection}
+      />
+      <Main
+        content={sections[2].jsx}
+        name={sections[2].name}
+        selection={focusedSection}
+      />
+      <Main
+        content={sections[3].jsx}
+        name={sections[3].name}
+        selection={focusedSection}
+      />
+      <Main
+        content={sections[4].jsx}
+        name={sections[4].name}
+        selection={focusedSection}
+      />
     </>
   );
 }

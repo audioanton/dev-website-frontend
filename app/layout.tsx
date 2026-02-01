@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/ui/components/Header"
+import { Saira_Condensed } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const saira = Saira_Condensed({
+  weight: "500",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Contact me",
-  description: "Fill in form to get in touch with me",
+  title: "",
+  description: "",
 };
 
 export default function RootLayout({
@@ -24,13 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header title="Anton" subtitle="Software Developer" />
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${saira.className} text-neutral-300 bg-radial-[at_50%_75%] from-sky-500 via-blue-800 to-[#172554] to-75%`}
+    >
+      <body className={`antialized`}>{children}</body>
     </html>
   );
 }

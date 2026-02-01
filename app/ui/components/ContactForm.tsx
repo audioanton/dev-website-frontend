@@ -1,12 +1,13 @@
-import React, { useState } from "react";
 import styles from "@/app/ui/form.module.css";
+import messageStyles from "@/app/ui/message.module.css";
 
-const ContactForm: React.FC = () => {
-  const [responseMessage, setResponseMessage] = useState<string>("");
+interface ContactFormProps {
+  closeModal?: () => void;
+}
 
+const ContactForm: React.FC<ContactFormProps> = ({ closeModal }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setResponseMessage("");
 
     const form = e.target as HTMLFormElement;
     const formValues = Object.fromEntries(new FormData(form).entries());
@@ -15,26 +16,54 @@ const ContactForm: React.FC = () => {
     parsedFormValues["subscribed"] =
       formValues.subscribed === "on" ? true : false;
 
+    const message = (message: string, status: "success" | "error" | "info") => {
+      const messageDiv = document.getElementById("messageContainer");
+
+      if (!messageDiv) return;
+
+      messageDiv.classList.remove(
+        messageStyles["success"],
+        messageStyles["info"],
+        messageStyles["error"],
+      );
+      messageDiv.classList.add(messageStyles[status]);
+      messageDiv.textContent = message;
+
+      setTimeout(() => {
+        messageDiv.classList.remove(messageStyles[status]);
+        messageDiv.textContent = "";
+      }, 3000);
+    };
+
     fetch("/api/contact-form", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(parsedFormValues),
     }).then((response) => {
       if (response.ok) {
-        setResponseMessage("Message sent, thank you!");
+        message("Message sent, thank you!", "success");
       } else {
-        response.json().then((error) => {
-          setResponseMessage(`Something went wrong: ${error["Errors"]}`);
-        });
+        response
+          .json()
+          .then((error) => {
+            message(`Something went wrong: ${error["Errors"]}`, "error");
+          })
+          .catch((error: SyntaxError) => {
+            message("Something went wrong!", "error");
+          });
       }
     });
 
-    setResponseMessage("Sending Message");
+    message("Sending Message", "info");
     form.reset();
+
+    if (closeModal) {
+      closeModal();
+    }
   };
 
   return (
-    <div className={styles.formDiv}>
+    <>
       <h3 className={styles.title}>Contact Me</h3>
 
       <form onSubmit={handleSubmit} className={styles.contactForm}>
@@ -53,10 +82,8 @@ const ContactForm: React.FC = () => {
         >
           Submit
         </button>
-
-        {responseMessage && <p>{responseMessage}</p>}
       </form>
-    </div>
+    </>
   );
 };
 
