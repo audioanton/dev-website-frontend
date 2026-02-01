@@ -144,7 +144,7 @@ const PartyMember = (props: PartyMemberProps) => {
           </div>
         </div>
         {/* card abilities */}
-        <div className="bg-gray-600/95 border border-black rounded-[1px] min-h-[150px] shadow-xl/30 shadow-black">
+        <div className="bg-gray-600/95 border border-black rounded-[1px] mt-[5px] min-h-[150px] shadow-xl/30 shadow-black">
           <div className="relative">
             <h3
               className={`uppercase absolute right-2 top-[-10px] text-neutral-400 text-sm font-bold [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000] ${fontSecond}`}
