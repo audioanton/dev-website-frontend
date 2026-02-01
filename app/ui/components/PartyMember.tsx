@@ -1,4 +1,5 @@
 import { NextFont } from "next/dist/compiled/@next/font";
+import Image from "next/image";
 
 import { useState, useEffect } from "react";
 
@@ -71,7 +72,7 @@ const PartyMember = (props: PartyMemberProps) => {
     "[text-shadow:_1px_1px_1_#fff,_-1px_-1px_1_#fff,_1px_-1px_1_#fff,_-1px_1px_1_#fff]";
 
   return (
-    <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px]">
+    <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px] pt-25">
       <div className="bg-gray-600/95 border border-black rounded-[1px] h-[300px] flex flex-col gap-4 shadow-xl/30 shadow-black">
         <div className="relative">
           <h3
@@ -80,9 +81,20 @@ const PartyMember = (props: PartyMemberProps) => {
             {props.headers[0]}
           </h3>
         </div>
-        <div className="h-60"></div>
+        {/* image  */}
+        <div className="h-30">
+          <div className="relative">
+            <Image
+              className="absolute top-[-100px] left-[20%]"
+              src="/kokos_miaow.PNG"
+              width={150}
+              height={150}
+              alt=""
+            ></Image>
+          </div>
+        </div>
         {/* card stats */}
-        <div className="h-40">
+        <div className="h-70">
           <div>
             <span className="flex justify-between items-end">
               <h3
