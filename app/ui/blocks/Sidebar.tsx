@@ -24,15 +24,18 @@ const Sidebar = ({ select, content, menuFont }: SidebarProps) => {
             <h3 className={menuFont?.className}>MENU</h3>
           </div>
         </div>
-        <div className="flex flex-col items-start absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
+        <div className="w-full flex flex-col items-start absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
           {content.map((section, index) => (
-            <button
-              className={`text-xl ${menuFont?.className} text-shadow-lg/30 text-shadow-black`}
-              key={index}
-              onClick={() => select(section)}
-            >
-              {section.toUpperCase()}
-            </button>
+            <span className="w-full relative group">
+              <button
+                className={`relative z-1 text-xl ${menuFont?.className} text-shadow-lg/30 text-shadow-black transition-all group-hover:text-2xl group-hover:left-3 group-hover:my-3`}
+                key={index}
+                onClick={() => select(section)}
+              >
+                {section.toUpperCase()}
+              </button>
+              <div className="absolute z-0 top-[36px] h-[6px] w-full opacity-0 group-hover:opacity-100 scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-300 ease-out bg-linear-to-r from-sky-400 from-10% via-blue-700 to-blue-950 to-70% shadow-[0_0_10px_#0ea5e9] border border-sky-500/50 pointer-events-none"></div>
+            </span>
           ))}
         </div>
       </div>
