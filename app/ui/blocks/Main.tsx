@@ -12,7 +12,7 @@ const Main = ({ name, selection, content }: mainProps) => {
   let hiddenClass = name === selection ? "" : "hidden";
 
   return (
-    <div className={`w-full h-screen md:w-3/4  bg-blue-500 ${hiddenClass}`}>
+    <div className={`w-full h-screen md:w-3/4 ${hiddenClass}`}>
       <div className="absolute top-[125px] w-full md:w-3/4">
         <div className="px-[50px] py-[15px] xl:pl-[300px]">{content}</div>
       </div>

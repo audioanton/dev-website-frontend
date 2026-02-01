@@ -16,8 +16,8 @@ const Sidebar = ({ select, content, menuFont }: SidebarProps) => {
   return (
     <>
       {/* desktop */}
-      <div className="hidden md:block absolute right-0 top-0 w-1/4 h-full bg-blue-900">
-        <div className="absolute h-[125px] w-full bg-slate-500">
+      <div className="hidden md:block absolute right-0 top-0 w-1/4 h-full bg-black/30">
+        <div className="absolute h-[125px] w-full">
           <div
             className={`absolute bottom-0 px-[20px] py-[15px] xl:px-[50px] text-neutral-400 text-sm font-bold [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]`}
           >
