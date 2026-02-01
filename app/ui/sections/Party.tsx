@@ -29,6 +29,7 @@ const Party = ({ fonts }: PartyProps) => {
         }}
         ultimate="silly face"
         fonts={fonts}
+        image="/anton_surprise.png"
       />
       <PartyMember
         headers={headers}
@@ -46,6 +47,7 @@ const Party = ({ fonts }: PartyProps) => {
         }}
         ultimate="sneak attack"
         fonts={fonts}
+        image="/mysterio.PNG"
       />
       <PartyMember
         headers={headers}
@@ -63,6 +65,7 @@ const Party = ({ fonts }: PartyProps) => {
         }}
         ultimate="Zoomies"
         fonts={fonts}
+        image="/kokos_miaow.PNG"
       />
     </div>
   );

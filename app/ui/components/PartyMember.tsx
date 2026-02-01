@@ -22,6 +22,7 @@ interface PartyMemberProps {
     first: NextFont;
     second: NextFont;
   };
+  image: string;
 }
 
 const PartyMember = (props: PartyMemberProps) => {
@@ -72,8 +73,8 @@ const PartyMember = (props: PartyMemberProps) => {
     "[text-shadow:_1px_1px_1_#fff,_-1px_-1px_1_#fff,_1px_-1px_1_#fff,_-1px_1px_1_#fff]";
 
   return (
-    <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px] pt-25">
-      <div className="bg-gray-600/95 border border-black rounded-[1px] h-[300px] flex flex-col gap-4 shadow-xl/30 shadow-black">
+    <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px] pt-50 md:pt-30">
+      <div className="bg-gray-600/95 border border-black rounded-[1px] h-[200px] flex flex-col gap-4 shadow-xl/30 shadow-black">
         <div className="relative">
           <h3
             className={`uppercase absolute right-2 top-[-10px] text-neutral-400 text-sm font-bold ${outlineDark} ${fontSecond}`}
@@ -85,10 +86,10 @@ const PartyMember = (props: PartyMemberProps) => {
         <div className="h-30">
           <div className="relative">
             <Image
-              className="absolute top-[-100px] left-[20%]"
-              src="/kokos_miaow.PNG"
-              width={150}
-              height={150}
+              className="w-70 md:w-50 absolute top-[-180px] md:top-[-120px] left-[15%] md:left-[10%] mask-b-from-80% mask-r-from-90% mask-l-from-90%"
+              src={props.image}
+              width={300}
+              height={300}
               alt=""
             ></Image>
           </div>
