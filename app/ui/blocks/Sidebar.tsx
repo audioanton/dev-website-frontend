@@ -26,10 +26,9 @@ const Sidebar = ({ select, content, menuFont }: SidebarProps) => {
         </div>
         <div className="w-full flex flex-col items-start absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
           {content.map((section, index) => (
-            <span className="w-full relative group">
+            <span className="w-full relative group" key={index}>
               <button
                 className={`relative z-1 text-xl ${menuFont?.className} text-shadow-lg/30 text-shadow-black transition-all group-hover:text-2xl group-hover:left-3 group-hover:my-3`}
-                key={index}
                 onClick={() => select(section)}
               >
                 {section.toUpperCase()}

@@ -31,7 +31,7 @@ export default function Home() {
   const sections = [
     {
       name: "Questlog",
-      jsx: <Questlog />,
+      jsx: <Questlog font={sairaBold} />,
     },
     {
       name: "Party",

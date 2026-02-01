@@ -1,13 +1,15 @@
+import UnderConstruction from "../components/UnderConstruction";
+
 interface PolicyProps {
-    title: string;
+  title: string;
 }
 
 const Policy = ({ title }: PolicyProps) => {
-    return (
-        <>
-        <h2>{title}</h2>
-        </>
-    )
+  return (
+    <>
+      <UnderConstruction />
+    </>
+  );
 };
 
 export default Policy;
