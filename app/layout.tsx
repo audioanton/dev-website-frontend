@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${saira.className} text-neutral-300 bg-radial-[at_50%_75%] from-sky-500 via-blue-800 to-[#172554] to-75% `}
+      className={`${saira.className} text-neutral-300 bg-radial-[at_50%_75%] from-sky-500 via-blue-800 to-[#172554] to-75%`}
     >
       <body className={`antialized`}>{children}</body>
     </html>

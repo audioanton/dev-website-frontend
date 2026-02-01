@@ -57,7 +57,11 @@ export default function Home() {
 
   return (
     <>
-      <Header title="ANTON" subtitle={focusedSection} titleFont={notoSans} />
+      <Header
+        title="ANTON Dev VII"
+        subtitle={focusedSection}
+        titleFont={notoSans}
+      />
       <Sidebar
         select={selectSection}
         content={sections.map((section) => section.name)}
