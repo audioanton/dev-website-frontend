@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
 @utility text-narrowed {
-    transform: scale(0.8, 1);
-    display: inline-block; /* Transforms require block/inline-block */
-    transform-origin: left;
+  transform: scale(0.8, 1);
+  display: inline-block; /* Transforms require block/inline-block */
+  transform-origin: left;
+}
+
+dialog[data-modal-backdrop]::backdrop {
+  background: hwb(0 0% 100% / 0.5);
 }

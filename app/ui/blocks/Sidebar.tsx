@@ -1,16 +1,58 @@
 "use client";
 
 import { NextFont } from "next/dist/compiled/@next/font";
+import Modal from "../components/Modal";
+import { useState } from "react";
 
 interface SidebarProps {
   select: (section: string) => void;
   content: string[];
-  menuFont?: NextFont;
+  menuFont: NextFont;
+  active: string;
 }
 
-const Sidebar = ({ select, content, menuFont }: SidebarProps) => {
+const Sidebar = ({ select, content, menuFont, active }: SidebarProps) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const openMobileMenu = () => {
-    // open
+    setMobileOpen(true);
+  };
+
+  const closeMobileMenu = (section?: string) => {
+    if (section) {
+      select(section);
+    }
+    setMobileOpen(false);
+  };
+
+  const menuContent = (
+    active: string,
+    closeMobileMenu?: (section: string) => void,
+  ) => {
+    const callback = closeMobileMenu ? closeMobileMenu : select;
+
+    const activeButton = `text-amber-500 text-3xl`;
+
+    return (
+      <div className={`flex flex-col items-start`}>
+        {content.map((section, index) => (
+          <span
+            className="w-[70%] md:w-full relative group"
+            key={`mobile ${index}`}
+          >
+            <button
+              className={`${section === active ? activeButton : "text-xl text-white"} text-shadow-lg/30 text-shadow-black relative z-1 transition-all group-hover:text-2xl group-hover:left-3 group-hover:my-3 ${menuFont.className}`}
+              onClick={() => callback(section)}
+            >
+              {section.toUpperCase()}
+            </button>
+            <div
+              className={`absolute z-0 top-[36px] h-[6px] w-full group-hover:opacity-100 scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-300 ease-out bg-linear-to-r from-sky-400 from-10% via-blue-700 to-blue-950 to-70% shadow-[0_0_10px_#0ea5e9] border border-sky-500/50 pointer-events-none`}
+            ></div>
+          </span>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -24,18 +66,8 @@ const Sidebar = ({ select, content, menuFont }: SidebarProps) => {
             <h3 className={menuFont?.className}>MENU</h3>
           </div>
         </div>
-        <div className="w-full flex flex-col items-start absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
-          {content.map((section, index) => (
-            <span className="w-full relative group" key={index}>
-              <button
-                className={`relative z-1 text-xl ${menuFont?.className} text-shadow-lg/30 text-shadow-black transition-all group-hover:text-2xl group-hover:left-3 group-hover:my-3`}
-                onClick={() => select(section)}
-              >
-                {section.toUpperCase()}
-              </button>
-              <div className="absolute z-0 top-[36px] h-[6px] w-full opacity-0 group-hover:opacity-100 scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-300 ease-out bg-linear-to-r from-sky-400 from-10% via-blue-700 to-blue-950 to-70% shadow-[0_0_10px_#0ea5e9] border border-sky-500/50 pointer-events-none"></div>
-            </span>
-          ))}
+        <div className="w-full absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">
+          {menuContent(active)}
         </div>
       </div>
       {/*
@@ -45,9 +77,19 @@ const Sidebar = ({ select, content, menuFont }: SidebarProps) => {
       {/* mobile */}
       <div className="md:hidden absolute right-0 top-0 h-[125px]">
         <div className="absolute bottom-0 right-0 px-[50px] py-[15px]">
-          <button onClick={openMobileMenu}>menu</button>
+          <button onClick={openMobileMenu} className={menuFont?.className}>
+            MENU
+          </button>
         </div>
       </div>
+
+      <Modal
+        isOpen={mobileOpen}
+        onClose={closeMobileMenu}
+        content={menuContent(active, closeMobileMenu)}
+        buttonstyles="text-white text-shadow-lg/30 text-shadow-black"
+        dialogstyles="shadow-[0_0_20px_5px_#0ea5e9] p-8 bg-gray-600/90 border border-black rounded-[1px]"
+      ></Modal>
     </>
   );
 };

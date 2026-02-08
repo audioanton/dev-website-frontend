@@ -1,13 +1,20 @@
 import React, { useRef, useEffect } from "react";
-import styles from "@/app/ui/modal.module.css";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  content: React.ReactNode;
+  content: React.ReactNode | React.ElementType;
+  buttonstyles?: string;
+  dialogstyles?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, content }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  content,
+  buttonstyles,
+  dialogstyles,
+}) => {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   const handleCancel = (event: React.SyntheticEvent) => {
@@ -46,19 +53,20 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, content }) => {
   return (
     <>
       <dialog
-        className={styles.modal}
+        className={`${dialogstyles} absolute w-[80vw] m-auto`}
+        data-modal-backdrop
         ref={modalRef}
         onCancel={handleCancel}
         onClick={handleLightDismiss}
       >
         <button
-          className={`${styles.modalCloseBtn} ${styles.modalButton}`}
-          onClick={onClose}
+          className={`${buttonstyles} text-[40px] absolute w-[60px] h-[60px] top-[0.25em] right-[0.25em] cursor-pointer`}
+          onClick={handleCancel}
           aria-label="Close modal"
         >
           &times;
         </button>
-        {content}
+        <div className="min-h-[100px]">{content}</div>
       </dialog>
     </>
   );

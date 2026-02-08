@@ -63,6 +63,7 @@ export default function Home() {
         titleFont={notoSans}
       />
       <Sidebar
+        active={focusedSection}
         select={selectSection}
         content={sections.map((section) => section.name)}
         menuFont={notoSans}
