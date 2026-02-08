@@ -28,75 +28,89 @@ function Quest(data: QuestData) {
     "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
 
   return (
-    <div className="flex flex-col gap-3 max-w-[450px] mx-auto md:mx-0">
+    <div className="flex flex-col gap-3 max-w-full md:max-w-[450px] mx-auto lg:mx-0">
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9]">
         <div className="bg-gray-600/95 border border-black rounded-[1px] pb-4 min-h-[450px] shadow-xl/30 shadow-black">
-          <div className="flex gap-4 p-4">
-            <span className="w-60">
-              <Link href={data.url}>
-                <Image
-                  className={`rounded-[2px] border-2 border-black shadow-[2px_2px_4px_0_#000]`}
-                  src={data.image}
-                  width={300}
-                  height={224}
-                  alt={data.alt}
-                />
-              </Link>
-            </span>
-            <div className="relative w-40">
-              <h3
-                className={`absolute top-[-40px] text-3xl mb-3 text-shadow-lg/60`}
-              >
-                {data.title}
-              </h3>
-              <table className="table-fixed border-separate border-spacing-y-2 mt-5 w-40">
-                <tbody>
-                  <tr>
-                    <td
-                      className={`w-[50%] text-neutral-400 uppercase font-medium ${data.font.className} ${outlineDark}`}
-                    >
-                      Status
-                    </td>
-                    <td>
-                      <span
-                        className={`uppercase ${data.font.className} ${completed} ${outlineDark}`}
+          <div className="relative w-full mb-2">
+            <h3
+              className={`absolute top-[-20px] right-[15px] text-3xl mb-3 text-shadow-lg/60`}
+            >
+              {data.title}
+            </h3>
+          </div>
+          <div className="p-4">
+            {/* 
+            *
+            image
+            * 
+            */}
+            <div className="md:flex md:gap-4">
+              <span className="w-full md:w-60">
+                <Link href={data.url}>
+                  <Image
+                    className={`rounded-[2px] border-2 border-black shadow-[2px_2px_4px_0_#000] mx-auto`}
+                    src={data.image}
+                    width={300}
+                    height={224}
+                    alt={data.alt}
+                  />
+                </Link>
+              </span>
+              {/* 
+                *
+                table
+                * 
+                */}
+              <span className="w-full md:w-40">
+                <table className="table-fixed border-separate w-40 border-spacing-y-4 mt-5 md:mt-0">
+                  <tbody>
+                    <tr>
+                      <td
+                        className={`w-[50%] text-neutral-400 uppercase font-medium ${data.font.className} ${outlineDark}`}
                       >
-                        {data.status}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      className={`w-[50%] text-neutral-400 uppercase font-medium ${data.font.className} ${outlineDark}`}
-                    >
-                      XP
-                    </td>
-                    <td>
-                      <span
-                        className={`uppercase text-lg ${data.font.className} ${outlineDark}`}
+                        Status
+                      </td>
+                      <td>
+                        <span
+                          className={`uppercase ${data.font.className} ${completed} ${outlineDark}`}
+                        >
+                          {data.status}
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        className={`w-[50%] text-neutral-400 uppercase font-medium ${data.font.className} ${outlineDark}`}
                       >
-                        {data.xp}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      className={`w-[50%] text-neutral-400 uppercase font-medium ${data.font.className} ${outlineDark} align-top`}
-                    >
-                      Skills
-                    </td>
-                    <td>
-                      <ul
-                        className={`uppercase italic list-none text-amber-500 ${outlineDark}`}
+                        XP
+                      </td>
+                      <td>
+                        <span
+                          className={`uppercase text-lg ${data.font.className} ${outlineDark}`}
+                        >
+                          {data.xp}
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        className={`w-[50%] text-neutral-400 uppercase font-medium ${data.font.className} ${outlineDark} align-top`}
                       >
-                        <li>{data.skills.first}</li>
-                        <li>{data.skills.second}</li>
-                        <li>{data.skills.third}</li>
-                      </ul>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        Skills
+                      </td>
+                      <td>
+                        <ul
+                          className={`uppercase italic list-none text-amber-500 ${outlineDark}`}
+                        >
+                          <li>{data.skills.first}</li>
+                          <li>{data.skills.second}</li>
+                          <li>{data.skills.third}</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </span>
             </div>
           </div>
           <div className={`mx-4`}>

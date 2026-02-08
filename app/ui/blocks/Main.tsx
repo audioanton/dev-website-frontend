@@ -14,7 +14,9 @@ const Main = ({ name, selection, content }: mainProps) => {
   return (
     <div className={`w-full h-screen md:w-3/4 ${hiddenClass}`}>
       <div className="absolute top-[125px] w-full md:w-3/4">
-        <div className="px-[50px] py-[15px] xl:pl-[300px]">{content}</div>
+        <div className="px-[20px] md:px-[50px] py-[15px] xl:pl-[300px]">
+          {content}
+        </div>
       </div>
     </div>
   );

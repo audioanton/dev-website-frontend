@@ -7,7 +7,7 @@ interface QuestlogData {
 
 const Questlog = ({ font }: QuestlogData) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-20">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:mt-20">
       <Quest
         title="Music Website"
         subtitle="I wrote a website for my music"
