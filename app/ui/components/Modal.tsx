@@ -66,7 +66,11 @@ const Modal: React.FC<ModalProps> = ({
         >
           &times;
         </button>
-        <div className="min-h-[100px]">{content}</div>
+        <div className="min-h-[100px]">
+          {typeof content === "function"
+            ? React.createElement(content)
+            : content}
+        </div>
       </dialog>
     </>
   );
