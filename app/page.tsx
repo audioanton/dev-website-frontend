@@ -26,7 +26,7 @@ const fonts = {
 };
 
 export default function Home() {
-  const [focusedSection, setFocusedSection] = useState("Questlog");
+  const [focusedSection, setFocusedSection] = useState("Party");
 
   const sections = [
     {
@@ -56,7 +56,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="w-screen h-screen">
       <Header
         title="ANTON Dev VII"
         subtitle={focusedSection}
@@ -93,6 +93,6 @@ export default function Home() {
         name={sections[4].name}
         selection={focusedSection}
       />
-    </>
+    </div>
   );
 }

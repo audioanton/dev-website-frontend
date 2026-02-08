@@ -63,7 +63,7 @@ const Sidebar = ({ select, content, menuFont, active }: SidebarProps) => {
           <div
             className={`absolute bottom-0 px-[20px] py-[15px] xl:px-[50px] text-neutral-400 text-sm font-bold [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]`}
           >
-            <h3 className={menuFont?.className}>MENU</h3>
+            <h3 className={`${menuFont?.className}`}>MENU</h3>
           </div>
         </div>
         <div className="w-full absolute top-[125px] px-[20px] py-[15px] xl:px-[50px]">

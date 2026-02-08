@@ -9,3 +9,14 @@
 dialog[data-modal-backdrop]::backdrop {
   background: hwb(0 0% 100% / 0.5);
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
