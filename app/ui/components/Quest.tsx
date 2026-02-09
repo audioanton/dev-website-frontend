@@ -33,7 +33,7 @@ function Quest(data: QuestData) {
         <div className="bg-gray-600/95 border border-black rounded-[1px] pb-4 min-h-[450px] shadow-xl/30 shadow-black">
           <div className="relative w-full mb-2">
             <h3
-              className={`absolute top-[-20px] right-[15px] text-3xl mb-3 text-shadow-lg/60`}
+              className={`absolute top-[-25px] left-5 text-4xl mb-3 text-shadow-lg/60`}
             >
               {data.title}
             </h3>
@@ -48,10 +48,10 @@ function Quest(data: QuestData) {
               <span className="w-full md:w-60">
                 <Link href={data.url}>
                   <Image
-                    className={`rounded-[2px] border-2 border-black shadow-[2px_2px_4px_0_#000] mx-auto`}
+                    className={`rounded-[2px] mx-auto mb-3 md:mb-0`}
                     src={data.image}
-                    width={300}
-                    height={224}
+                    width={256}
+                    height={256}
                     alt={data.alt}
                   />
                 </Link>
@@ -62,7 +62,7 @@ function Quest(data: QuestData) {
                 * 
                 */}
               <span className="w-full md:w-40">
-                <table className="table-fixed border-separate w-40 border-spacing-y-4 mt-5 md:mt-0">
+                <table className="table-fixed w-40 border-spacing-y-4 md:mt-0 w-full">
                   <tbody>
                     <tr>
                       <td
@@ -100,7 +100,7 @@ function Quest(data: QuestData) {
                       </td>
                       <td>
                         <ul
-                          className={`uppercase italic list-none text-amber-500 ${outlineDark}`}
+                          className={`uppercase italic list-none text-amber-500 ${outlineDark} flex gap-3 md:block md:gap-0`}
                         >
                           <li>{data.skills.first}</li>
                           <li>{data.skills.second}</li>
@@ -115,7 +115,7 @@ function Quest(data: QuestData) {
           </div>
           <div className={`mx-4`}>
             <h3
-              className={`text-xl ${outlineDark} text-neutral-400 ${data.font.className}`}
+              className={`text-2xl ${outlineDark} text-neutral-400 ${data.font.className}`}
             >
               {data.subtitle}
             </h3>
