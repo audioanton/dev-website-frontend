@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import Image from "next/image";
 
 interface CarouselProps {
   content: React.ReactNode[];
@@ -44,7 +45,7 @@ const Carousel = ({ content }: CarouselProps) => {
         {content.map((slide, index) => (
           <div
             key={`slide ${index}`}
-            className="relative w-full h-full flex-shrink-0 snap-center flex justify-center items-center mr-20 py-12"
+            className="relative w-full h-full flex-shrink-0 snap-center flex justify-center items-center mr-20 md:py-12"
           >
             {slide}
           </div>
@@ -56,11 +57,18 @@ const Carousel = ({ content }: CarouselProps) => {
         className="absolute md:mt-7 cursor-pointer bottom-[1/2] left-0 md:left-50 text-white text-3xl w-25 h-25 translate-y-[-50%] transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9] hover:border-1 hover:border-sky-500/50 hover:text-4xl"
       >
         PREV
+        {/* <Image
+          src="/previous.png"
+          alt="previous slide"
+          width={256}
+          height={256}
+        /> */}
       </button>
       <button
         onClick={() => scroll(false)}
         className="absolute md:mt-7 cursor-pointer bottom-[1/2] right-0 md:right-50 text-white text-3xl w-25 h-25 translate-y-[-50%] transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9] hover:border-1 hover:border-sky-500/50 hover:text-4xl"
       >
+        {/* <Image src="/next.png" alt="next slide" width={256} height={256} /> */}
         NEXT
       </button>
     </div>

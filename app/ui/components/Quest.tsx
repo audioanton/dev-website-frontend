@@ -2,6 +2,8 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { NextFont } from "next/dist/compiled/@next/font";
+import Modal from "./Modal";
+import { useState } from "react";
 
 export interface QuestData {
   title: string;
@@ -21,6 +23,10 @@ export interface QuestData {
 }
 
 function Quest(data: QuestData) {
+  const [descriptionOpen, setDescriptionOpen] = useState(false);
+
+  const descriptionJsx = <div>{data.description}</div>;
+
   const completed =
     data.status === "completed" ? "text-green-500" : "text-amber-500";
 
@@ -28,9 +34,9 @@ function Quest(data: QuestData) {
     "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
 
   return (
-    <div className="flex flex-col gap-3 max-w-full md:max-w-[450px] mx-auto lg:mx-0">
+    <div className="flex flex-col gap-3 max-w-full md:max-w-[450px] mx-auto lg:mx-0 py-5 md:py-0">
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9]">
-        <div className="bg-gray-600/95 border border-black rounded-[1px] pb-4 min-h-[450px] shadow-xl/30 shadow-black">
+        <div className="bg-gray-600/95 border border-black rounded-[1px] pb-4 shadow-xl/30 shadow-black">
           <div className="relative w-full mb-2">
             <h3
               className={`absolute top-[-25px] left-5 text-4xl mb-3 text-shadow-lg/60`}
@@ -45,8 +51,8 @@ function Quest(data: QuestData) {
             * 
             */}
             <div className="md:flex md:gap-4">
-              <span className="w-full md:w-60">
-                <Link href={data.url}>
+              <span className="w-full md:w-60 transition-all transition-discrete hover:scale-105">
+                <Link href={data.url} aria-label={`a link to ${data.title}`}>
                   <Image
                     className={`rounded-[2px] mx-auto mb-3 md:mb-0`}
                     src={data.image}
@@ -113,13 +119,31 @@ function Quest(data: QuestData) {
               </span>
             </div>
           </div>
-          <div className={`mx-4`}>
+          <div className={`mx-4 flex flex-col`}>
             <h3
-              className={`text-2xl ${outlineDark} text-neutral-400 ${data.font.className}`}
+              className={`text-2xl ${outlineDark} text-neutral-400 ${data.font.className} mb-3`}
             >
               {data.subtitle}
             </h3>
-            <p className={`text-lg text-shadow-lg/50`}>{data.description}</p>
+
+            <button
+              className={`transition-all transition-discrete hover:scale-120 hover:cursor-pointer hover:translate shadow-xl/30 shadow-black rounded-[2px] bg-black/20 w-50 h-[50px] ${outlineDark} text-3xl`}
+              onClick={() => setDescriptionOpen(true)}
+            >
+              Description
+            </button>
+            {/*
+             *
+             * Description Modal
+             *
+             */}
+            <Modal
+              isOpen={descriptionOpen}
+              onClose={() => setDescriptionOpen(false)}
+              content={descriptionJsx}
+              buttonstyles="text-white text-shadow-lg/30 text-shadow-black text-2xl"
+              dialogstyles="w-full md:w-100 px-15 md:px-0 text-white text-shadow-lg/30 text-shadow-black text-2xl shadow-[0_0_20px_5px_#0ea5e9] p-8 bg-gray-600 border border-black rounded-[1px]"
+            ></Modal>
           </div>
         </div>
       </div>

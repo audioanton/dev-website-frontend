@@ -7,7 +7,7 @@
 }
 
 dialog[data-modal-backdrop]::backdrop {
-  background: hwb(0 0% 100% / 0.5);
+  background: hwb(0 0% 100% / 0.8);
 }
 
 @layer utilities {
