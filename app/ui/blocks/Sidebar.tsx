@@ -76,8 +76,11 @@ const Sidebar = ({ select, content, menuFont, active }: SidebarProps) => {
       */}
       {/* mobile */}
       <div className="md:hidden absolute right-0 top-0 h-[125px]">
-        <div className="absolute bottom-0 right-0 px-[50px] py-[15px]">
-          <button onClick={openMobileMenu} className={menuFont?.className}>
+        <div className="absolute bottom-0 right-0">
+          <button
+            onClick={openMobileMenu}
+            className={`${menuFont?.className} w-25 h-25 text-2xl`}
+          >
             MENU
           </button>
         </div>

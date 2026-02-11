@@ -127,10 +127,10 @@ function Quest(data: QuestData) {
             </h3>
 
             <button
-              className={`transition-all transition-discrete hover:scale-120 hover:cursor-pointer hover:translate shadow-xl/30 shadow-black rounded-[2px] bg-black/20 w-50 h-[50px] ${outlineDark} text-3xl`}
+              className={`transition-all flex italic justify-start transition-discrete hover:scale-120 hover:translate-x-5 hover:cursor-pointer hover:translate w-50 h-[50px] ${outlineDark} text-3xl text-amber-500`}
               onClick={() => setDescriptionOpen(true)}
             >
-              Description
+              read more
             </button>
             {/*
              *
@@ -142,7 +142,7 @@ function Quest(data: QuestData) {
               onClose={() => setDescriptionOpen(false)}
               content={descriptionJsx}
               buttonstyles="text-white text-shadow-lg/30 text-shadow-black text-2xl"
-              dialogstyles="w-full md:w-100 px-15 md:px-0 text-white text-shadow-lg/30 text-shadow-black text-2xl shadow-[0_0_20px_5px_#0ea5e9] p-8 bg-gray-600 border border-black rounded-[1px]"
+              dialogstyles="w-full md:w-200 px-15 md:px-10 text-white text-shadow-lg/30 text-shadow-black text-2xl shadow-[0_0_20px_5px_#0ea5e9] p-8 bg-gray-600 border border-black rounded-[1px]"
             ></Modal>
           </div>
         </div>

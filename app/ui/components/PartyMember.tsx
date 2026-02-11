@@ -73,7 +73,7 @@ const PartyMember = (props: PartyMemberProps) => {
     "[text-shadow:_1px_1px_1_#fff,_-1px_-1px_1_#fff,_1px_-1px_1_#fff,_-1px_1px_1_#fff]";
 
   return (
-    <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px] pt-50 md:pt-30 pb-5 md:pb-0">
+    <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px] pt-45 md:pt-30 pb-5 md:pb-0">
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9] hover:border-1 hover:border-sky-500/50">
         <div className="bg-gray-600/95 border border-black rounded-[1px] h-[200px] flex flex-col gap-4 shadow-xl/30 shadow-black">
           <div className="relative">

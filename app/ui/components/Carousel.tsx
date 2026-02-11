@@ -45,7 +45,7 @@ const Carousel = ({ content }: CarouselProps) => {
         {content.map((slide, index) => (
           <div
             key={`slide ${index}`}
-            className="relative w-full h-full flex-shrink-0 snap-center flex justify-center items-center mr-20 md:py-12"
+            className="relative w-full h-full flex-shrink-0 snap-center flex justify-center items-center md:py-12"
           >
             {slide}
           </div>
@@ -53,23 +53,26 @@ const Carousel = ({ content }: CarouselProps) => {
       </div>
 
       <button
-        onClick={() => scroll(true)}
-        className="absolute md:mt-7 cursor-pointer bottom-[1/2] left-0 md:left-50 text-white text-3xl w-25 h-25 translate-y-[-50%] transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9] hover:border-1 hover:border-sky-500/50 hover:text-4xl"
+        onClick={() => scroll(false)}
+        className="absolute md:mt-7 cursor-pointer top-50 left-[-20px] md:left-0 md:bottom-[1/2] text-white text-3xl w-[50px] md:w-20 md:h-25 md:translate-y-[-50%] transition-all transition-discrete hover:scale-130"
       >
-        PREV
-        {/* <Image
-          src="/previous.png"
+        <Image
+          src="/prev_arrow_white.svg"
           alt="previous slide"
-          width={256}
-          height={256}
-        /> */}
+          width={150}
+          height={150}
+        />
       </button>
       <button
         onClick={() => scroll(false)}
-        className="absolute md:mt-7 cursor-pointer bottom-[1/2] right-0 md:right-50 text-white text-3xl w-25 h-25 translate-y-[-50%] transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9] hover:border-1 hover:border-sky-500/50 hover:text-4xl"
+        className="absolute md:mt-7 cursor-pointer top-50 right-[-20px] md:bottom-[1/2] md:right-0 text-white text-3xl w-[50px] md:w-20 md:h-25 md:translate-y-[-50%] transition-all transition-discrete hover:scale-130"
       >
-        {/* <Image src="/next.png" alt="next slide" width={256} height={256} /> */}
-        NEXT
+        <Image
+          src="/next_arrow_white.svg"
+          alt="next slide"
+          width={150}
+          height={150}
+        />
       </button>
     </div>
   );
