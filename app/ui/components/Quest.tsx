@@ -38,7 +38,11 @@ function Quest(data: QuestData) {
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9]">
         <div className="bg-gray-600/95 border border-black rounded-[1px] pb-4 shadow-xl/30 shadow-black">
           <div className="relative w-full mb-2">
-            <h3 className={``}>{data.title}</h3>
+            <h3
+              className={`absolute top-[-25px] left-5 text-4xl mb-3 text-shadow-lg/60`}
+            >
+              {data.title}
+            </h3>
           </div>
           <div className="p-4">
             {/* 
