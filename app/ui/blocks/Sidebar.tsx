@@ -3,16 +3,23 @@
 import { NextFont } from "next/dist/compiled/@next/font";
 import Modal from "../components/Modal";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface SidebarProps {
-  select: (section: string) => void;
   content: string[];
   menuFont: NextFont;
   active: string;
 }
 
-const Sidebar = ({ select, content, menuFont, active }: SidebarProps) => {
+const Sidebar = ({ content, menuFont, active }: SidebarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const router = useRouter();
+
+  const select = (title: string) => {
+    const path = title === "Party" ? "/" : `/${title.toLowerCase()}`;
+    router.push(path, { scroll: false });
+  };
 
   const openMobileMenu = () => {
     setMobileOpen(true);

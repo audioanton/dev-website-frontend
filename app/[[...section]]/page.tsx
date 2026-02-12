@@ -3,12 +3,14 @@
 import Header from "@/app/ui/blocks/Header";
 import Sidebar from "@/app/ui/blocks/Sidebar";
 import Main from "@/app/ui/blocks/Main";
-import Questlog from "./ui/sections/Questlog";
-import Contact from "./ui/sections/Contact";
-import Party from "./ui/sections/Party";
-import Policy from "./ui/sections/Policy";
+import Questlog from "../ui/sections/Questlog";
+import Contact from "../ui/sections/Contact";
+import Party from "../ui/sections/Party";
+import Policy from "../ui/sections/Policy";
 import React, { useState } from "react";
 import { Noto_Sans, Saira_Condensed } from "next/font/google";
+import { useEffect } from "react";
+import { useParams, notFound } from "next/navigation";
 
 const notoSans = Noto_Sans({
   weight: "variable",
@@ -26,16 +28,33 @@ const fonts = {
 };
 
 export default function Home() {
-  const [focusedSection, setFocusedSection] = useState("Party");
+  const params = useParams();
+
+  const routeSection = params.section?.[0] || "";
+
+  const validSections: Record<string, string> = {
+    "": "Party",
+    questlog: "Questlog",
+    party: "Party",
+    cookies: "Cookies",
+    contact: "Contact",
+    privacy: "Privacy",
+  };
+
+  if (routeSection !== "" && !validSections[routeSection.toLowerCase()]) {
+    notFound();
+  }
+
+  const focusedSection = validSections[routeSection.toLowerCase()] || "Party";
 
   const sections = [
     {
-      name: "Questlog",
-      jsx: <Questlog font={sairaBold} />,
-    },
-    {
       name: "Party",
       jsx: <Party fonts={fonts} />,
+    },
+    {
+      name: "Questlog",
+      jsx: <Questlog font={sairaBold} />,
     },
     {
       name: "Cookies",
@@ -51,10 +70,6 @@ export default function Home() {
     },
   ];
 
-  const selectSection = (title: string): void => {
-    setFocusedSection(title);
-  };
-
   return (
     <div className="w-screen h-screen">
       <Header
@@ -64,7 +79,6 @@ export default function Home() {
       />
       <Sidebar
         active={focusedSection}
-        select={selectSection}
         content={sections.map((section) => section.name)}
         menuFont={notoSans}
       />
