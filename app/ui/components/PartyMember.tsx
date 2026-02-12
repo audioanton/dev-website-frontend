@@ -65,12 +65,9 @@ const PartyMember = (props: PartyMemberProps) => {
     });
   }, []);
 
-  const fontFirst = props.fonts.first.className;
-  const fontSecond = props.fonts.second.className;
+  const subtitleFont = props.fonts.second.className;
   const outlineDark =
     "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
-  const outLineWhite =
-    "[text-shadow:_1px_1px_1_#fff,_-1px_-1px_1_#fff,_1px_-1px_1_#fff,_-1px_1px_1_#fff]";
 
   return (
     <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px] pt-45 md:pt-30 pb-5 md:pb-0">
@@ -78,7 +75,7 @@ const PartyMember = (props: PartyMemberProps) => {
         <div className="bg-gray-600/95 border border-black rounded-[1px] h-[200px] flex flex-col gap-4 shadow-xl/30 shadow-black">
           <div className="relative">
             <h3
-              className={`uppercase absolute right-2 top-[-10px] text-neutral-400 text-sm font-bold ${outlineDark} ${fontSecond}`}
+              className={`uppercase absolute right-2 top-[-10px] text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
             >
               {props.headers[0]}
             </h3>
@@ -106,7 +103,9 @@ const PartyMember = (props: PartyMemberProps) => {
                 </h3>
                 <p className={`mx-2 ${outlineDark}`}>
                   Lv.{" "}
-                  <span className={`${fontSecond} text-xl`}>{props.level}</span>
+                  <span className={`${subtitleFont} text-xl`}>
+                    {props.level}
+                  </span>
                 </p>
               </span>
               <div className="mx-2 h-[2px] border shadow-3xl/30 border-black flex justify-between">
@@ -117,7 +116,7 @@ const PartyMember = (props: PartyMemberProps) => {
                 className={`mx-2 text-xl text-shadow-lg/30 ${outlineDark} mb-3`}
               >
                 {props.xp}
-                <span className={`${fontSecond} text-sm text-neutral-400`}>
+                <span className={`${subtitleFont} text-sm text-neutral-400`}>
                   {" "}
                   XP
                 </span>
@@ -135,7 +134,7 @@ const PartyMember = (props: PartyMemberProps) => {
               <p className={`mx-2 text-xl text-shadow-lg/30 ${outlineDark}`}>
                 {hp.hp}
                 <span className="text-sm">/{props.hp}</span>
-                <span className={`${fontSecond} text-sm text-neutral-400`}>
+                <span className={`${subtitleFont} text-sm text-neutral-400`}>
                   {" "}
                   HP
                 </span>
@@ -147,7 +146,7 @@ const PartyMember = (props: PartyMemberProps) => {
         <div className="bg-gray-600/95 border border-black rounded-[1px] mt-[5px] min-h-[150px] shadow-xl/30 shadow-black">
           <div className="relative">
             <h3
-              className={`uppercase absolute right-2 top-[-10px] text-neutral-400 text-sm font-bold [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000] ${fontSecond}`}
+              className={`uppercase absolute right-2 top-[-10px] text-neutral-400 text-sm font-bold [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000] ${subtitleFont}`}
             >
               {props.headers[1]}
             </h3>
@@ -159,7 +158,7 @@ const PartyMember = (props: PartyMemberProps) => {
                 <td>Strength</td>
                 <td>
                   <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    className={`uppercase text-sky-400 ${outlineDark} ${subtitleFont}`}
                   >
                     {props.strength}
                   </span>
@@ -169,7 +168,7 @@ const PartyMember = (props: PartyMemberProps) => {
                 <td>Wisdom</td>
                 <td>
                   <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    className={`uppercase text-sky-400 ${outlineDark} ${subtitleFont}`}
                   >
                     {props.wisdom}
                   </span>
@@ -179,7 +178,7 @@ const PartyMember = (props: PartyMemberProps) => {
                 <td>Status</td>
                 <td>
                   <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    className={`uppercase text-sky-400 ${outlineDark} ${subtitleFont}`}
                   >
                     {props.status}
                   </span>
@@ -189,7 +188,7 @@ const PartyMember = (props: PartyMemberProps) => {
                 <td>Ultimate</td>
                 <td>
                   <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    className={`uppercase text-sky-400 ${outlineDark} ${subtitleFont}`}
                   >
                     {props.ultimate}
                   </span>

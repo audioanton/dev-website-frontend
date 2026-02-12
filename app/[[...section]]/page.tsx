@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { Noto_Sans, Saira_Condensed } from "next/font/google";
 import { useEffect } from "react";
 import { useParams, notFound } from "next/navigation";
+import ContactForm from "../ui/components/ContactForm";
 
 const notoSans = Noto_Sans({
   weight: "variable",
@@ -66,7 +67,7 @@ export default function Home() {
     },
     {
       name: "Contact",
-      jsx: <Contact />,
+      jsx: <ContactForm subtitleFont={sairaBold} />,
     },
   ];
 

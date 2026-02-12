@@ -1,14 +1,19 @@
-import styles from "@/app/ui/form.module.css";
-import messageStyles from "@/app/ui/message.module.css";
+import { NextFont } from "next/dist/compiled/@next/font";
+import Image from "next/image";
+import { useState } from "react";
 
 interface ContactFormProps {
-  closeModal?: () => void;
+  subtitleFont: NextFont;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ closeModal }) => {
+const ContactForm = ({ subtitleFont }: ContactFormProps) => {
+  const [message, setMessage] = useState("");
+
+  const outlineDark =
+    "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const form = e.target as HTMLFormElement;
     const formValues = Object.fromEntries(new FormData(form).entries());
 
@@ -16,23 +21,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ closeModal }) => {
     parsedFormValues["subscribed"] =
       formValues.subscribed === "on" ? true : false;
 
-    const message = (message: string, status: "success" | "error" | "info") => {
-      const messageDiv = document.getElementById("messageContainer");
-
-      if (!messageDiv) return;
-
-      messageDiv.classList.remove(
-        messageStyles["success"],
-        messageStyles["info"],
-        messageStyles["error"],
-      );
-      messageDiv.classList.add(messageStyles[status]);
-      messageDiv.textContent = message;
-
-      setTimeout(() => {
-        messageDiv.classList.remove(messageStyles[status]);
-        messageDiv.textContent = "";
-      }, 3000);
+    const message = (message: string) => {
+      setMessage(message);
     };
 
     fetch("/api/contact-form", {
@@ -41,64 +31,86 @@ const ContactForm: React.FC<ContactFormProps> = ({ closeModal }) => {
       body: JSON.stringify(parsedFormValues),
     }).then((response) => {
       if (response.ok) {
-        message("Message sent, thank you!", "success");
+        message("Message sent, thank you!");
       } else {
         response
           .json()
           .then((error) => {
-            message(`Something went wrong: ${error["Errors"]}`, "error");
+            message(`Something went wrong: ${error["Errors"]}`);
           })
           .catch((error: SyntaxError) => {
-            message("Something went wrong!", "error");
+            message("Something went wrong!");
           });
       }
     });
 
-    message("Sending Message", "info");
+    message("Sending Message");
     form.reset();
-
-    if (closeModal) {
-      closeModal();
-    }
   };
 
-  return (
-    <>
-      <h3 className={styles.title}>Contact Me</h3>
-
-      <form onSubmit={handleSubmit} className={styles.contactForm}>
-        <TextInput fieldName="Name" />
-        <TextInput fieldName="Email" />
-        <TextInput fieldName="Message" />
-
-        <div>
-          <label htmlFor="subscribed">Subscribe</label>
-          <input type="checkbox" name="subscribed" defaultChecked></input>
-        </div>
-
-        <button
-          className={`${styles.formInput} ${styles.formButton}`}
-          type="submit"
+  function TextInput({ fieldName }: { fieldName: string }) {
+    return (
+      <div
+        className={`relative w-full mb-2 bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3`}
+      >
+        <label
+          className={`absolute top-[-10px] left-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
+          htmlFor={fieldName.toLowerCase()}
         >
-          Submit
-        </button>
+          {fieldName}
+        </label>
+        <input
+          className={`border-b-2 text-2xl border-black w-full h-10`}
+          type="text"
+          name={fieldName.toLowerCase()}
+          required
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="md:grid md:grid-cols-4 w-full gap-3">
+      <div className="hidden md:block col-span-1">
+        <Image
+          className="mask-b-from-80% mask-r-from-90% mask-l-from-90%"
+          src={"/anton_red.png"}
+          alt="a picture of me in garbage bags"
+          width={300}
+          height={300}
+        />
+        <h2
+          className={`text-2xl uppercase text-sky-400 [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000] ${subtitleFont} ${outlineDark}`}
+        >
+          Get in touch
+        </h2>
+      </div>
+      <form onSubmit={handleSubmit} className={`md:col-span-3`}>
+        <TextInput fieldName="name" />
+        <TextInput fieldName="email" />
+        <TextInput fieldName="message" />
+
+        <div className="md:grid md:grid-cols-2 justify-between my-3 gap-3 h-10">
+          <div className="flex gap-3 items-center justify-center relative w-full bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3">
+            <label
+              className={`text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
+              htmlFor="subscribed"
+            >
+              Subscribe
+            </label>
+            <input type="checkbox" name="subscribed" defaultChecked></input>
+          </div>
+
+          <button
+            className={`relative w-full bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
-
-function TextInput({ fieldName }: { fieldName: string }) {
-  return (
-    <>
-      <label htmlFor={fieldName}>{fieldName}</label>
-      <input
-        className={styles.formInput}
-        type="text"
-        name={fieldName.toLowerCase()}
-        required
-      />
-    </>
-  );
-}
 
 export default ContactForm;
