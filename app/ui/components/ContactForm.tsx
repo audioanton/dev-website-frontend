@@ -48,10 +48,33 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
     form.reset();
   };
 
-  function TextInput({ fieldName }: { fieldName: string }) {
+  function TextInput({
+    fieldName,
+    isTextarea,
+  }: {
+    fieldName: string;
+    isTextarea?: boolean;
+  }) {
+    const regular = () => (
+      <input
+        className={`border-b-2 text-2xl border-black w-full h-full`}
+        type="text"
+        name={fieldName.toLowerCase()}
+        required
+      />
+    );
+
+    const area = () => (
+      <textarea
+        className={`border-b-2 text-2xl border-black w-full h-50 resize-none`}
+        name={fieldName.toLowerCase()}
+        required
+      ></textarea>
+    );
+
     return (
       <div
-        className={`relative w-full mb-2 bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3`}
+        className={`relative w-full mb-2 bg-gray-600/90 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3`}
       >
         <label
           className={`absolute top-[-10px] left-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
@@ -59,12 +82,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
         >
           {fieldName}
         </label>
-        <input
-          className={`border-b-2 text-2xl border-black w-full h-10`}
-          type="text"
-          name={fieldName.toLowerCase()}
-          required
-        />
+        {isTextarea ? area() : regular()}
       </div>
     );
   }
@@ -88,7 +106,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
       <form onSubmit={handleSubmit} className={`md:col-span-3`}>
         <TextInput fieldName="name" />
         <TextInput fieldName="email" />
-        <TextInput fieldName="message" />
+        <TextInput fieldName="message" isTextarea={true} />
 
         <div className="md:grid md:grid-cols-2 justify-between my-3 gap-3 h-10">
           <div className="flex gap-3 items-center justify-center relative w-full bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3">
@@ -98,7 +116,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
             >
               Subscribe
             </label>
-            <input type="checkbox" name="subscribed" defaultChecked></input>
+            <input type="checkbox" name="subscribed"></input>
           </div>
 
           <button
