@@ -73,7 +73,7 @@ const PartyMember = (props: PartyMemberProps) => {
     "[text-shadow:_1px_1px_1_#fff,_-1px_-1px_1_#fff,_1px_-1px_1_#fff,_-1px_1px_1_#fff]";
 
   return (
-    <div className="flex flex-col gap-3 max-w-100 sm:max-w-[250px] pt-45 md:pt-30 pb-5 md:pb-0">
+    <div className="flex flex-col gap-3 w-full sm:max-w-[250px] pt-45 md:pt-30 pb-5 md:pb-0">
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9] hover:border-1 hover:border-sky-500/50">
         <div className="bg-gray-600/95 border border-black rounded-[1px] h-[200px] flex flex-col gap-4 shadow-xl/30 shadow-black">
           <div className="relative">
@@ -152,63 +152,83 @@ const PartyMember = (props: PartyMemberProps) => {
               {props.headers[1]}
             </h3>
           </div>
+          {/* 
+          
+          stats table
+                    
+          */}
 
-          <table className="table-fixed border-separate m-2 w-[90%]">
-            <tbody className={`text-shadow-lg/30 text-shadow-black text-lg`}>
-              <tr>
-                <td>Strength</td>
-                <td>
-                  <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
-                  >
-                    {props.strength}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>Wisdom</td>
-                <td>
-                  <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
-                  >
-                    {props.wisdom}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>Status</td>
-                <td>
-                  <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
-                  >
-                    {props.status}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>Ultimate</td>
-                <td>
-                  <span
-                    className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
-                  >
-                    {props.ultimate}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td className="align-top">Abilites</td>
-                <td>
-                  <span className={`italic ${outlineDark} text-sm`}>
-                    <ul>
-                      <li>{props.abilities.first}</li>
-                      <li>{props.abilities.second}</li>
-                      <li>{props.abilities.third}</li>
-                    </ul>
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="grid grid-cols-3 m-2 text-shadow-lg/30 text-shadow-black text-lg">
+            <table className="table-fixed border-separate col-span-2 md:col-span-1">
+              <tbody>
+                <tr>
+                  <td>Strength</td>
+                  <td>
+                    <span
+                      className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    >
+                      {props.strength}
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wisdom</td>
+                  <td>
+                    <span
+                      className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    >
+                      {props.wisdom}
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td>
+                    <span
+                      className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    >
+                      {props.status}
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Ultimate</td>
+                  <td>
+                    <span
+                      className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
+                    >
+                      {props.ultimate}
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hidden md:block">
+                  <td className="align-top">Abilites</td>
+                  <td>
+                    <span className={`italic ${outlineDark} text-sm`}>
+                      <ul>
+                        <li>{props.abilities.first}</li>
+                        <li>{props.abilities.second}</li>
+                        <li>{props.abilities.third}</li>
+                      </ul>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="col-span-1 md:hidden">
+              <p className="align-top">Abilites</p>
+              <div className="mb-3 h-[2px] shadow-lg/50 border-black">
+                <div className="h-[2px] w-full bg-white"></div>
+              </div>
+              <span className={`italic ${outlineDark} text-sm`}>
+                <ul>
+                  <li>{props.abilities.first}</li>
+                  <li>{props.abilities.second}</li>
+                  <li>{props.abilities.third}</li>
+                </ul>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
