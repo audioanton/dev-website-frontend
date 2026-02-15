@@ -73,7 +73,7 @@ const PartyMember = (props: PartyMemberProps) => {
     "[text-shadow:_1px_1px_1_#fff,_-1px_-1px_1_#fff,_1px_-1px_1_#fff,_-1px_1px_1_#fff]";
 
   return (
-    <div className="flex flex-col gap-3 w-full sm:max-w-[250px] pt-45 md:pt-30 pb-5 md:pb-0">
+    <div className="flex flex-col gap-3 w-full max-w-8/10 sm:max-w-[250px] pt-45 md:pt-30 pb-5 md:pb-0">
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9] hover:border-1 hover:border-sky-500/50">
         <div className="bg-gray-600/95 border border-black rounded-[1px] h-[200px] flex flex-col gap-4 shadow-xl/30 shadow-black">
           <div className="relative">
@@ -87,7 +87,7 @@ const PartyMember = (props: PartyMemberProps) => {
           <div className="h-30">
             <div className="relative">
               <Image
-                className="w-70 md:w-50 absolute top-[-180px] md:top-[-120px] left-[15%] md:left-[10%] mask-b-from-80% mask-r-from-90% mask-l-from-90%"
+                className="w-70 md:w-50 absolute top-[-180px] md:top-[-120px] right-1/2 translate-x-1/2 mask-b-from-80% mask-r-from-90% mask-l-from-90%"
                 src={props.image}
                 width={300}
                 height={300}
@@ -159,14 +159,15 @@ const PartyMember = (props: PartyMemberProps) => {
           */}
 
           <div className="grid grid-cols-3 md:block m-2 text-shadow-lg/30 text-shadow-black text-lg">
-            <table className="table-fixed border-separate col-span-2 md:col-span-1 md:w-full">
+            {/* Added border-spacing-y-2 to create vertical gaps between rows */}
+            <table className="table-fixed border-separate col-span-2 md:w-full">
               <colgroup>
-                <col className="md:w-1/4"></col>
-                <col className="md:w-3/4"></col>
+                <col className="w-1/3 md:w-1/3"></col>
+                <col className="w-2/3 md:w-2/3"></col>
               </colgroup>
               <tbody>
                 <tr>
-                  <td>Strength</td>
+                  <td className="pr-4">Strength</td>
                   <td>
                     <span
                       className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
@@ -176,7 +177,7 @@ const PartyMember = (props: PartyMemberProps) => {
                   </td>
                 </tr>
                 <tr>
-                  <td>Wisdom</td>
+                  <td className="pr-4">Wisdom</td>
                   <td>
                     <span
                       className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
@@ -186,7 +187,7 @@ const PartyMember = (props: PartyMemberProps) => {
                   </td>
                 </tr>
                 <tr>
-                  <td>Status</td>
+                  <td className="pr-4">Status</td>
                   <td>
                     <span
                       className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
@@ -196,7 +197,7 @@ const PartyMember = (props: PartyMemberProps) => {
                   </td>
                 </tr>
                 <tr>
-                  <td>Ultimate</td>
+                  <td className="pr-4">Ultimate</td>
                   <td>
                     <span
                       className={`uppercase text-sky-400 ${outlineDark} ${fontSecond}`}
@@ -205,11 +206,12 @@ const PartyMember = (props: PartyMemberProps) => {
                     </span>
                   </td>
                 </tr>
-                <tr className="hidden md:block">
-                  <td className="align-top md:w-1/4">Abilites</td>
+                {/* Changed md:block to md:table-row to maintain table structure */}
+                <tr className="hidden md:table-row">
+                  <td className="align-top pr-4">Abilities</td>
                   <td>
                     <span className={`italic ${outlineDark} text-sm`}>
-                      <ul>
+                      <ul className="list-none">
                         <li>{props.abilities.first}</li>
                         <li>{props.abilities.second}</li>
                         <li>{props.abilities.third}</li>
@@ -219,8 +221,10 @@ const PartyMember = (props: PartyMemberProps) => {
                 </tr>
               </tbody>
             </table>
+
+            {/* Mobile-only Abilities section */}
             <div className="col-span-1 md:hidden">
-              <p className="align-top">Abilites</p>
+              <p className="align-top">Abilities</p>
               <div className="mb-3 h-[2px] shadow-lg shadow-sky-500/90 border-black">
                 <div className="h-[2px] w-full bg-white/60"></div>
               </div>
