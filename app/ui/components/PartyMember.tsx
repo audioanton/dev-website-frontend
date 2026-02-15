@@ -158,8 +158,12 @@ const PartyMember = (props: PartyMemberProps) => {
                     
           */}
 
-          <div className="grid grid-cols-3 m-2 text-shadow-lg/30 text-shadow-black text-lg">
-            <table className="table-fixed border-separate col-span-2 md:col-span-1">
+          <div className="grid grid-cols-3 md:block m-2 text-shadow-lg/30 text-shadow-black text-lg">
+            <table className="table-fixed border-separate col-span-2 md:col-span-1 md:w-full">
+              <colgroup>
+                <col className="md:w-1/4"></col>
+                <col className="md:w-3/4"></col>
+              </colgroup>
               <tbody>
                 <tr>
                   <td>Strength</td>
@@ -202,7 +206,7 @@ const PartyMember = (props: PartyMemberProps) => {
                   </td>
                 </tr>
                 <tr className="hidden md:block">
-                  <td className="align-top">Abilites</td>
+                  <td className="align-top md:w-1/4">Abilites</td>
                   <td>
                     <span className={`italic ${outlineDark} text-sm`}>
                       <ul>
@@ -217,8 +221,8 @@ const PartyMember = (props: PartyMemberProps) => {
             </table>
             <div className="col-span-1 md:hidden">
               <p className="align-top">Abilites</p>
-              <div className="mb-3 h-[2px] shadow-lg/50 border-black">
-                <div className="h-[2px] w-full bg-white"></div>
+              <div className="mb-3 h-[2px] shadow-lg shadow-sky-500/90 border-black">
+                <div className="h-[2px] w-full bg-white/60"></div>
               </div>
               <span className={`italic ${outlineDark} text-sm`}>
                 <ul>
