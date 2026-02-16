@@ -40,7 +40,7 @@ const Carousel = ({ content }: CarouselProps) => {
     <div className="relative w-full">
       <div
         ref={scrollRef}
-        className="no-scrollbar w-full h-full overflow-x-scroll snap-x snap-mandatory overflow-y-hidden flex"
+        className="no-scrollbar w-8/10 mx-auto h-full overflow-x-scroll snap-x snap-mandatory overflow-y-hidden flex"
       >
         {content.map((slide, index) => (
           <div

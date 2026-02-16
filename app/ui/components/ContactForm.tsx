@@ -51,15 +51,18 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
   function TextInput({
     fieldName,
     isTextarea,
+    placeholder,
   }: {
     fieldName: string;
     isTextarea?: boolean;
+    placeholder?: string;
   }) {
     const regular = () => (
       <input
         className={`border-b-2 text-2xl border-black w-full h-full`}
         type="text"
         name={fieldName.toLowerCase()}
+        placeholder={placeholder}
         required
       />
     );
@@ -68,6 +71,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
       <textarea
         className={`border-b-2 text-2xl border-black w-full h-50 resize-none`}
         name={fieldName.toLowerCase()}
+        placeholder={placeholder}
         required
       ></textarea>
     );
@@ -89,38 +93,35 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
 
   return (
     <div className="md:grid md:grid-cols-4 w-full gap-3">
-      <div className="hidden md:block col-span-1">
+      <h2
+        className={`text-center md:text-start relative md:left-1/4 col-span-4 mb-3 text-5xl md:text-6xl uppercase text-amber-500 [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000] ${subtitleFont} ${outlineDark}`}
+      >
+        Get in touch
+      </h2>
+      <div className="col-span-1 hidden md:block">
         <Image
-          className="mask-b-from-80% mask-r-from-90% mask-l-from-90%"
+          className=" mask-b-from-80% mask-r-from-90% mask-l-from-90%"
           src={"/anton_red.png"}
           alt="a picture of me in garbage bags"
           width={300}
           height={300}
         />
-        <h2
-          className={`text-2xl uppercase text-sky-400 [text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000] ${subtitleFont} ${outlineDark}`}
-        >
-          Get in touch
-        </h2>
       </div>
-      <form onSubmit={handleSubmit} className={`md:col-span-3`}>
+      <form
+        onSubmit={handleSubmit}
+        className={`md:col-span-3 w-8/10 md:w-full mx-auto`}
+      >
         <TextInput fieldName="name" />
         <TextInput fieldName="email" />
-        <TextInput fieldName="message" isTextarea={true} />
+        <TextInput
+          fieldName="message"
+          isTextarea={true}
+          placeholder="Wow, you seem quite cool."
+        />
 
-        <div className="md:grid md:grid-cols-2 justify-between my-3 gap-3 h-10">
-          <div className="flex gap-3 items-center justify-center relative w-full bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3">
-            <label
-              className={`text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
-              htmlFor="subscribed"
-            >
-              Subscribe
-            </label>
-            <input type="checkbox" name="subscribed"></input>
-          </div>
-
+        <div className="h-10">
           <button
-            className={`relative w-full bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
+            className={`hover:cursor-pointer relative w-full md:w-1/2 bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
             type="submit"
           >
             Submit

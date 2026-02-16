@@ -34,7 +34,7 @@ function Quest(data: QuestData) {
     "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
 
   return (
-    <div className="flex flex-col gap-3 max-w-8/10 md:max-w-[450px] mx-auto lg:mx-0 py-5 md:py-0">
+    <div className="flex flex-col gap-3 md:max-w-[450px] mx-auto lg:mx-0 py-5 md:py-0">
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9]">
         <div className="bg-gray-600/95 border border-black rounded-[1px] shadow-xl/30 shadow-black">
           <div className="relative w-full mb-2">
@@ -129,7 +129,7 @@ function Quest(data: QuestData) {
                 {data.subtitle}
               </h3>
               <button
-                className={`flex justify-end items-end uppercase transition-all italic transition-discrete hover:scale-120 hover:translate-x-5 hover:cursor-pointer hover:translate w-30 h-[50px] ${outlineDark} text-2xl text-sky-500`}
+                className={`flex justify-end items-end uppercase transition-all italic transition-discrete hover:scale-120 hover:translate-y-[-5px] hover:translate-x-[-5px] hover:cursor-pointer hover:translate w-30 h-[50px] ${outlineDark} text-2xl text-sky-500`}
                 onClick={() => setDescriptionOpen(true)}
               >
                 read more
