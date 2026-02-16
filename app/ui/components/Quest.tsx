@@ -36,7 +36,7 @@ function Quest(data: QuestData) {
   return (
     <div className="flex flex-col gap-3 max-w-full md:max-w-[450px] mx-auto lg:mx-0 py-5 md:py-0">
       <div className="transition-shadow duration-200 hover:shadow-[0_0_20px_5px_#0ea5e9]">
-        <div className="bg-gray-600/95 border border-black rounded-[1px] pb-4 shadow-xl/30 shadow-black">
+        <div className="bg-gray-600/95 border border-black rounded-[1px] shadow-xl/30 shadow-black">
           <div className="relative w-full mb-2">
             <h3
               className={`absolute top-[-25px] left-5 text-4xl mb-3 text-shadow-lg/60`}
@@ -69,6 +69,10 @@ function Quest(data: QuestData) {
                 */}
               <span className="w-full md:w-40">
                 <table className="table-fixed w-40 border-spacing-y-4 md:mt-0 w-full">
+                  <colgroup>
+                    <col className="w-1/3"></col>
+                    <col className="w-2/3"></col>
+                  </colgroup>
                   <tbody>
                     <tr>
                       <td
@@ -118,32 +122,31 @@ function Quest(data: QuestData) {
                 </table>
               </span>
             </div>
-          </div>
-          <div className={`mx-4 flex flex-col`}>
-            <h3
-              className={`text-2xl ${outlineDark} text-neutral-400 ${data.font.className} mb-3`}
-            >
-              {data.subtitle}
-            </h3>
-
-            <button
-              className={`transition-all flex italic justify-start transition-discrete hover:scale-120 hover:translate-x-5 hover:cursor-pointer hover:translate w-50 h-[50px] ${outlineDark} text-3xl text-amber-500`}
-              onClick={() => setDescriptionOpen(true)}
-            >
-              read more
-            </button>
-            {/*
-             *
-             * Description Modal
-             *
-             */}
-            <Modal
-              isOpen={descriptionOpen}
-              onClose={() => setDescriptionOpen(false)}
-              content={descriptionJsx}
-              buttonstyles="text-white text-shadow-lg/30 text-shadow-black text-2xl"
-              dialogstyles="w-full md:w-200 px-15 md:px-10 text-white text-shadow-lg/30 text-shadow-black text-2xl shadow-[0_0_20px_5px_#0ea5e9] p-8 bg-gray-600 border border-black rounded-[1px]"
-            ></Modal>
+            <div className={`w-full flex gap-1 pt-3 items-end`}>
+              <h3
+                className={`flex text-2xl ${outlineDark} text-neutral-400 ${data.font.className} items-end`}
+              >
+                {data.subtitle}
+              </h3>
+              <button
+                className={`flex justify-end items-end uppercase transition-all italic transition-discrete hover:scale-120 hover:translate-x-5 hover:cursor-pointer hover:translate w-30 h-[50px] ${outlineDark} text-2xl text-sky-500`}
+                onClick={() => setDescriptionOpen(true)}
+              >
+                read more
+              </button>
+              {/*
+               *
+               * Description Modal
+               *
+               */}
+              <Modal
+                isOpen={descriptionOpen}
+                onClose={() => setDescriptionOpen(false)}
+                content={descriptionJsx}
+                buttonstyles="text-white text-shadow-lg/30 text-shadow-black text-2xl"
+                dialogstyles="w-full md:w-200 px-15 md:px-10 text-white text-shadow-lg/30 text-shadow-black text-2xl shadow-[0_0_20px_5px_#0ea5e9] p-8 bg-gray-600 border border-black rounded-[1px]"
+              ></Modal>
+            </div>
           </div>
         </div>
       </div>

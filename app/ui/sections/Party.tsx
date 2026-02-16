@@ -74,10 +74,10 @@ const Party = ({ fonts }: PartyProps) => {
 
   return (
     <>
-      <div className="hidden md:grid w-full lg:grid-cols-3 gap-4 gap-x-15 flex justify-center">
+      <div className="hidden lg:grid w-full lg:grid-cols-3 gap-4 xl:gap-x-10 flex justify-center">
         {members}
       </div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <Carousel content={members} />
       </div>
     </>
