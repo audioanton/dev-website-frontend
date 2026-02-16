@@ -121,7 +121,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
 
         <div className="h-10">
           <button
-            className={`hover:cursor-pointer relative w-full md:w-1/2 bg-gray-600/95 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
+            className={`hover:cursor-pointer shadow-black shadow-xl/50 transition-shadow duration-200 hover:border-sky-500/50 hover:shadow-sky-500/50 relative w-full md:w-1/2 bg-gray-600/95 border-2 border-black rounded-[1px]  inset-ring-2 inset-ring-gray-500/50  p-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
             type="submit"
           >
             Submit
