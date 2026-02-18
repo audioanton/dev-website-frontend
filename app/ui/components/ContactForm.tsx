@@ -1,18 +1,22 @@
 import { NextFont } from "next/dist/compiled/@next/font";
 import Image from "next/image";
 import { useState } from "react";
+import StatusElement from "./StatusElement";
+import type { Status } from "./StatusElement";
 
 interface ContactFormProps {
   subtitleFont: NextFont;
 }
 
 const ContactForm = ({ subtitleFont }: ContactFormProps) => {
-  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
 
   const outlineDark =
     "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setStatus("loading");
+
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const formValues = Object.fromEntries(new FormData(form).entries());
@@ -21,30 +25,45 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
     parsedFormValues["subscribed"] =
       formValues.subscribed === "on" ? true : false;
 
-    const message = (message: string) => {
-      setMessage(message);
-    };
+    const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-    fetch("/api/contact-form", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(parsedFormValues),
-    }).then((response) => {
-      if (response.ok) {
-        message("Message sent, thank you!");
-      } else {
-        response
-          .json()
-          .then((error) => {
-            message(`Something went wrong: ${error["Errors"]}`);
-          })
-          .catch((error: SyntaxError) => {
-            message("Something went wrong!");
-          });
-      }
-    });
+    Promise.all([
+      fetch("/api/contact-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsedFormValues),
+      }),
+      delay(2000), // Forces the block to wait at least 2 seconds
+    ])
+      .then(([response]) => {
+        // The delay result is ignored
+        if (response.ok) {
+          setStatus("success");
+        } else {
+          setStatus("failure");
+        }
+      })
+      .catch(() => setStatus("failure"));
 
-    message("Sending Message");
+    // fetch("/api/contact-form", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(parsedFormValues),
+    // }).then((response) => {
+    //   if (response.ok) {
+    //     setStatus("success");
+    //   } else {
+    //     response
+    //       .json()
+    //       .then((error) => {
+    //         setStatus(`failure`);
+    //       })
+    //       .catch((error: SyntaxError) => {
+    //         setStatus("failure");
+    //       });
+    //   }
+    // });
+
     form.reset();
   };
 
@@ -128,6 +147,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
           </button>
         </div>
       </form>
+      <StatusElement status={status} />
     </div>
   );
 };
