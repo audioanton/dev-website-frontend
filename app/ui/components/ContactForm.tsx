@@ -59,7 +59,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
   }) {
     const regular = () => (
       <input
-        className={`border-b-2 text-2xl border-black w-full h-full`}
+        className={`border-b-2 text-2xl border-black w-full h-full focus:outline-none`}
         type="text"
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
@@ -69,7 +69,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
 
     const area = () => (
       <textarea
-        className={`border-b-2 text-2xl border-black w-full h-50 resize-none`}
+        className={`border-b-2 text-2xl border-black w-full h-50 resize-none focus:outline-none`}
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
         required
