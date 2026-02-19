@@ -4,14 +4,14 @@ import Header from "@/app/ui/blocks/Header";
 import Sidebar from "@/app/ui/blocks/Sidebar";
 import Main from "@/app/ui/blocks/Main";
 import Questlog from "../ui/sections/Questlog";
-import Contact from "../ui/sections/Contact";
 import Party from "../ui/sections/Party";
 import Policy from "../ui/sections/Policy";
 import React, { useState } from "react";
 import { Noto_Sans, Saira_Condensed } from "next/font/google";
-import { useEffect } from "react";
 import { useParams, notFound } from "next/navigation";
 import ContactForm from "../ui/components/ContactForm";
+import type { Status } from "../ui/components/StatusElement";
+import StatusElement from "../ui/components/StatusElement";
 
 const notoSans = Noto_Sans({
   weight: "variable",
@@ -29,6 +29,7 @@ const fonts = {
 };
 
 export default function Home() {
+  const [status, setStatus] = useState<Status>("idle");
   const params = useParams();
 
   const routeSection = params.section?.[0] || "";
@@ -67,7 +68,7 @@ export default function Home() {
     },
     {
       name: "Contact",
-      jsx: <ContactForm subtitleFont={sairaBold} />,
+      jsx: <ContactForm subtitleFont={sairaBold} setStatus={setStatus} />,
     },
   ];
 
@@ -82,6 +83,10 @@ export default function Home() {
         active={focusedSection}
         content={sections.map((section) => section.name)}
         menuFont={notoSans}
+      />
+      <StatusElement
+        status={status}
+        styles={`absolute z-1 bottom-1/4 right-1/2 md:top-1/2 p-5 translate-x-1/2 ${fonts.second.className} text-shadow-lg`}
       />
       <Main
         content={sections[0].jsx}

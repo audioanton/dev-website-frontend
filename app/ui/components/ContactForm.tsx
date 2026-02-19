@@ -1,16 +1,13 @@
 import { NextFont } from "next/dist/compiled/@next/font";
 import Image from "next/image";
-import { useState } from "react";
-import StatusElement from "./StatusElement";
 import type { Status } from "./StatusElement";
 
 interface ContactFormProps {
   subtitleFont: NextFont;
+  setStatus: (status: Status) => void;
 }
 
-const ContactForm = ({ subtitleFont }: ContactFormProps) => {
-  const [status, setStatus] = useState<Status>("idle");
-
+const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
   const outlineDark =
     "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
 
@@ -82,7 +79,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
         type="text"
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
-        required
+        // required
       />
     );
 
@@ -91,7 +88,7 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
         className={`border-b-2 text-2xl border-black w-full h-50 resize-none focus:outline-none`}
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
-        required
+        // required
       ></textarea>
     );
 
@@ -147,7 +144,6 @@ const ContactForm = ({ subtitleFont }: ContactFormProps) => {
           </button>
         </div>
       </form>
-      <StatusElement status={status} />
     </div>
   );
 };
