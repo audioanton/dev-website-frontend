@@ -8,11 +8,16 @@ export type Status = "idle" | "loading" | "success" | "failure";
 export default function StatusElement({
   status: initialStatus,
   styles,
+  divStyles,
 }: {
   status: Status;
   styles: string;
+  divStyles: string;
 }) {
   const [status, setStatus] = useState<Status>(initialStatus);
+
+  const outlineDark =
+    "[text-shadow:_1px_1px_1_#000,_-1px_-1px_1_#000,_1px_-1px_1_#000,_-1px_1px_1_#000]";
 
   useEffect(() => {
     setStatus(initialStatus);
@@ -33,7 +38,7 @@ export default function StatusElement({
 
   return (
     <div
-      className={`flex items-center justify-center uppercase text-2xl ${styles}`}
+      className={`flex items-center justify-center uppercase text-2xl md:text-3xl ${divStyles}`}
     >
       <AnimatePresence mode="wait">
         {status === "loading" && (
@@ -43,9 +48,9 @@ export default function StatusElement({
             initial="initial"
             animate="animate"
             exit="exit"
-            className=""
+            className={styles}
           >
-            <span className="">sending</span>
+            <span className={`${styles} ${outlineDark}`}>sending</span>
           </motion.div>
         )}
 
@@ -56,7 +61,7 @@ export default function StatusElement({
             initial="initial"
             animate="animate"
             exit="exit"
-            className="text-green-600"
+            className={`${styles} ${outlineDark} text-green-500`}
           >
             <span className="">message sent</span>
           </motion.div>
@@ -69,7 +74,7 @@ export default function StatusElement({
             initial="initial"
             animate="animate"
             exit="exit"
-            className="text-red-700"
+            className={`${styles} ${outlineDark} text-red-500`}
           >
             <span className="">message failed</span>
           </motion.div>

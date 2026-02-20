@@ -19,47 +19,28 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
     const formValues = Object.fromEntries(new FormData(form).entries());
 
     const parsedFormValues = JSON.parse(JSON.stringify(formValues));
+
     parsedFormValues["subscribed"] =
       formValues.subscribed === "on" ? true : false;
 
-    const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-    Promise.all([
-      fetch("/api/contact-form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsedFormValues),
-      }),
-      delay(2000), // Forces the block to wait at least 2 seconds
-    ])
-      .then(([response]) => {
-        // The delay result is ignored
-        if (response.ok) {
-          setStatus("success");
-        } else {
-          setStatus("failure");
-        }
-      })
-      .catch(() => setStatus("failure"));
-
-    // fetch("/api/contact-form", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(parsedFormValues),
-    // }).then((response) => {
-    //   if (response.ok) {
-    //     setStatus("success");
-    //   } else {
-    //     response
-    //       .json()
-    //       .then((error) => {
-    //         setStatus(`failure`);
-    //       })
-    //       .catch((error: SyntaxError) => {
-    //         setStatus("failure");
-    //       });
-    //   }
-    // });
+    fetch("/api/contact-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formValues),
+    }).then((response) => {
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        response
+          .json()
+          .then((error) => {
+            setStatus(`failure`);
+          })
+          .catch((error: SyntaxError) => {
+            setStatus("failure");
+          });
+      }
+    });
 
     form.reset();
   };

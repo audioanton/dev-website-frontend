@@ -86,7 +86,8 @@ export default function Home() {
       />
       <StatusElement
         status={status}
-        styles={`absolute z-1 bottom-1/4 right-1/2 md:top-1/2 p-5 translate-x-1/2 ${fonts.second.className} text-shadow-lg`}
+        styles={`p-5  ${fonts.second.className} w-full`}
+        divStyles={`absolute z-1 bottom-[23%] right-1/2 md:top-1/2 translate-x-1/2`}
       />
       <Main
         content={sections[0].jsx}
