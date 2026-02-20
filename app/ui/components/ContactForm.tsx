@@ -18,22 +18,12 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
     const form = e.target as HTMLFormElement;
     const formValues = Object.fromEntries(new FormData(form).entries());
 
-    const parsedFormValues = JSON.parse(JSON.stringify(formValues));
-    parsedFormValues["subscribed"] =
-      formValues.subscribed === "on" ? true : false;
-
-    const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-    Promise.all([
-      fetch("/api/contact-form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsedFormValues),
-      }),
-      delay(2000), // Forces the block to wait at least 2 seconds
-    ])
-      .then(([response]) => {
-        // The delay result is ignored
+    fetch("/api/contact-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formValues),
+    })
+      .then((response) => {
         if (response.ok) {
           setStatus("success");
         } else {
@@ -41,25 +31,6 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
         }
       })
       .catch(() => setStatus("failure"));
-
-    // fetch("/api/contact-form", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(parsedFormValues),
-    // }).then((response) => {
-    //   if (response.ok) {
-    //     setStatus("success");
-    //   } else {
-    //     response
-    //       .json()
-    //       .then((error) => {
-    //         setStatus(`failure`);
-    //       })
-    //       .catch((error: SyntaxError) => {
-    //         setStatus("failure");
-    //       });
-    //   }
-    // });
 
     form.reset();
   };
@@ -79,7 +50,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
         type="text"
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
-        // required
+        required
       />
     );
 
@@ -88,7 +59,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
         className={`border-b-2 text-2xl border-black w-full h-50 resize-none focus:outline-none`}
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
-        // required
+        required
       ></textarea>
     );
 
