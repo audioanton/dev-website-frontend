@@ -86,6 +86,7 @@ export default function Home() {
       />
       <StatusElement
         status={status}
+        setStatus={setStatus}
         styles={`p-5  ${fonts.second.className} w-full`}
         divStyles={`absolute z-1 bottom-[23%] right-1/2 md:top-1/2 translate-x-1/2`}
       />

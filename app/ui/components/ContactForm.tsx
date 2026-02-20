@@ -18,29 +18,19 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
     const form = e.target as HTMLFormElement;
     const formValues = Object.fromEntries(new FormData(form).entries());
 
-    const parsedFormValues = JSON.parse(JSON.stringify(formValues));
-
-    parsedFormValues["subscribed"] =
-      formValues.subscribed === "on" ? true : false;
-
     fetch("/api/contact-form", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formValues),
-    }).then((response) => {
-      if (response.ok) {
-        setStatus("success");
-      } else {
-        response
-          .json()
-          .then((error) => {
-            setStatus(`failure`);
-          })
-          .catch((error: SyntaxError) => {
-            setStatus("failure");
-          });
-      }
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          setStatus("success");
+        } else {
+          setStatus("failure");
+        }
+      })
+      .catch(() => setStatus("failure"));
 
     form.reset();
   };
@@ -60,7 +50,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
         type="text"
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
-        // required
+        required
       />
     );
 
@@ -69,7 +59,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
         className={`border-b-2 text-2xl border-black w-full h-50 resize-none focus:outline-none`}
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
-        // required
+        required
       ></textarea>
     );
 
