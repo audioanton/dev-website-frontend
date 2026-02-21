@@ -56,6 +56,22 @@ const Questlog = ({ font }: QuestlogData) => {
       }}
       font={font}
     />,
+    <Quest
+      title="Klirr Hackathon"
+      subtitle="A Hackathon for resilient software"
+      description="Three friends and I developed an idea about a backup documentation system for essential workers in a crisis situation."
+      url="https://www.klirr-hack.se/"
+      image="/diamonds-256.png"
+      alt="pixel art diamonds"
+      status="completed"
+      xp="22325"
+      skills={{
+        first: "System design",
+        second: "Resilient software",
+        third: "",
+      }}
+      font={font}
+    />,
   ];
 
   return (

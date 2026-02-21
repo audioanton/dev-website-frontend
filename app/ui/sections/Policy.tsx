@@ -28,7 +28,7 @@ const Policy = ({ contents, imagePath, imageAlt }: PolicyProps) => {
         alt={alt}
         width={300}
         height={300}
-        className="mt-10 mx-auto md:mx-0"
+        className="mt-10 mx-auto"
       />
     </div>
   );
