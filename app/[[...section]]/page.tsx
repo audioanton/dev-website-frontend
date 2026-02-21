@@ -69,13 +69,11 @@ export default function Home() {
       name: "Cookies",
       jsx: (
         <Policy
-          subtitle="Cookie Policy"
           contents={[
             "I don't save ANY browser cookies",
             "I like eating cookies",
             "I don't really bake cookies",
           ]}
-          icon="🍪"
         />
       ),
     },
@@ -83,13 +81,9 @@ export default function Home() {
       name: "Privacy",
       jsx: (
         <Policy
-          subtitle="Privacy Policy"
-          imagePath="/cherry-256.png"
-          imageAlt="two big red cartoon cherries"
           contents={[
             "When contacting me I save your form input",
-            "Contact me again if you want your information removed",
-            "I then remove all data with matching name/email",
+            "Contact me to remove your information",
           ]}
         />
       ),

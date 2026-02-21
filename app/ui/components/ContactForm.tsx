@@ -46,7 +46,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
   }) {
     const regular = () => (
       <input
-        className={`border-b-2 text-2xl border-black w-full h-full focus:outline-none`}
+        className={`border-b text-2xl border-black w-full h-full focus:outline-none`}
         type="text"
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
@@ -56,7 +56,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
 
     const area = () => (
       <textarea
-        className={`border-b-2 text-2xl border-black w-full h-50 resize-none focus:outline-none`}
+        className={`border-b text-2xl border-black w-full h-50 resize-none focus:outline-none`}
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
         required
@@ -65,7 +65,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
 
     return (
       <div
-        className={`relative w-full mb-2 bg-gray-600/90 border-2 border-black rounded-[1px] shadow-xl/50 inset-ring-2 inset-ring-gray-500/50 shadow-black p-3`}
+        className={`relative w-full mb-2 bg-gray-600/90 border-1 border-black rounded-[1px] shadow-xl/50 shadow-black p-3`}
       >
         <label
           className={`absolute top-[-10px] left-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
@@ -108,7 +108,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
 
         <div className="h-10">
           <button
-            className={`hover:cursor-pointer shadow-black shadow-xl/50 transition-shadow duration-200 hover:border-sky-500/50 hover:shadow-sky-500/50 relative w-full md:w-1/2 bg-gray-600/95 border-2 border-black rounded-[1px]  inset-ring-2 inset-ring-gray-500/50  p-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
+            className={`hover:cursor-pointer shadow-black shadow-xl/50 transition-shadow duration-200 hover:border-sky-500/50 hover:shadow-sky-500/50 relative w-full md:w-1/2 bg-gray-600/95 border border-black rounded-[1px] p-3 text-shadow-lg/60 uppercase text-neutral-400 text-sm font-bold ${outlineDark} ${subtitleFont}`}
             type="submit"
           >
             Submit

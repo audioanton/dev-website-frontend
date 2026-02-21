@@ -71,10 +71,10 @@ const Sidebar = ({ sections, menuFont, active, policies }: SidebarProps) => {
     };
 
     return (
-      <div className={`flex flex-col items-start`}>
+      <div className={`relative flex flex-col items-start`}>
         {isPolicies ? (
           <div
-            className={`h-[6px] w-full bg-linear-to-r from-sky-950 from-30% via-blue-800 to-sky-700 to-80% shadow-[0_0_10px_#0ea5e9] border border-sky-500/50 mb-3`}
+            className={`h-[6px] w-full bg-linear-to-r from-gray-800 from-20% via-gray-700 to-gray-600 to-95% mb-3`}
           ></div>
         ) : (
           ""
