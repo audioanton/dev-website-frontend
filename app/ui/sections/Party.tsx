@@ -31,6 +31,8 @@ const Party = ({ fonts }: PartyProps) => {
       ultimate="silly face"
       fonts={fonts}
       image="/anton_surprise.png"
+      description="Driven, fun and creative.
+      Skills include: Java, Php, Python, Typescript, Docker, Linux, Bash, TDD. I like working in teams and making people happy."
     />,
     <PartyMember
       key="member-???"
