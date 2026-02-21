@@ -44,7 +44,7 @@ const Questlog = ({ font }: QuestlogData) => {
       title="React Website"
       subtitle="A game-inspired dev portfolio"
       description="I built this website inspired by two childhood favorites, final fantasy VII and VII. Couldn't finish those games back then, but they sure were cool."
-      url=""
+      url="https://github.com/audioanton/dev-website-frontend"
       image="/cherry-256.png"
       alt="a pixel art cherry"
       status="in progress"
