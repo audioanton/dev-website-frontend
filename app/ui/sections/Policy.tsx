@@ -17,7 +17,7 @@ const Policy = ({
   icon,
 }: PolicyProps) => {
   const image = imagePath ?? "/kokos_laying.PNG";
-  const alt = imagePath ? imageAlt : "a white cat spreading out";
+  const alt = imageAlt ?? "a white cat spreading out";
   const listIcon = icon ?? "\u2714";
 
   return (
