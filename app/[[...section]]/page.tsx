@@ -67,11 +67,32 @@ export default function Home() {
   const policies = [
     {
       name: "Cookies",
-      jsx: <Policy title="Cookies" />,
+      jsx: (
+        <Policy
+          subtitle="Cookie Policy"
+          contents={[
+            "I don't save ANY browser cookies",
+            "I like eating cookies",
+            "I don't really bake cookies",
+          ]}
+          icon="🍪"
+        />
+      ),
     },
     {
       name: "Privacy",
-      jsx: <Policy title="Privacy" />,
+      jsx: (
+        <Policy
+          subtitle="Privacy Policy"
+          imagePath="/cherry-256.png"
+          imageAlt="two big red cartoon cherries"
+          contents={[
+            "When contacting me I save your form input",
+            "Contact me again if you want your information removed",
+            "I then remove all data with matching name/email",
+          ]}
+        />
+      ),
     },
   ];
 
