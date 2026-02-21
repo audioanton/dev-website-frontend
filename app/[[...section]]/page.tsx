@@ -59,16 +59,19 @@ export default function Home() {
       jsx: <Questlog font={sairaBold} />,
     },
     {
+      name: "Contact",
+      jsx: <ContactForm subtitleFont={sairaBold} setStatus={setStatus} />,
+    },
+  ];
+
+  const policies = [
+    {
       name: "Cookies",
       jsx: <Policy title="Cookies" />,
     },
     {
       name: "Privacy",
       jsx: <Policy title="Privacy" />,
-    },
-    {
-      name: "Contact",
-      jsx: <ContactForm subtitleFont={sairaBold} setStatus={setStatus} />,
     },
   ];
 
@@ -81,8 +84,9 @@ export default function Home() {
       />
       <Sidebar
         active={focusedSection}
-        content={sections.map((section) => section.name)}
+        sections={sections.map((section) => section.name)}
         menuFont={notoSans}
+        policies={policies.map((policy) => policy.name)}
       />
       <StatusElement
         status={status}
@@ -106,13 +110,13 @@ export default function Home() {
         selection={focusedSection}
       />
       <Main
-        content={sections[3].jsx}
-        name={sections[3].name}
+        content={policies[0].jsx}
+        name={policies[0].name}
         selection={focusedSection}
       />
       <Main
-        content={sections[4].jsx}
-        name={sections[4].name}
+        content={policies[1].jsx}
+        name={policies[1].name}
         selection={focusedSection}
       />
     </div>
