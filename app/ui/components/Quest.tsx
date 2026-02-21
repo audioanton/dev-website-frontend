@@ -110,7 +110,7 @@ function Quest(data: QuestData) {
                       </td>
                       <td>
                         <ul
-                          className={`uppercase italic list-none text-amber-500 ${outlineDark} flex gap-3 md:block md:gap-0`}
+                          className={`uppercase italic list-none text-amber-500 ${outlineDark} flex flex-wrap max-w-full gap-x-3 gap-y-1 md:block md:gap-0`}
                         >
                           <li>{data.skills.first}</li>
                           <li>{data.skills.second}</li>

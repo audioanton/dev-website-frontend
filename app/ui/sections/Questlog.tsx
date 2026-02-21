@@ -23,14 +23,14 @@ const Questlog = ({ font }: QuestlogData) => {
         third: "Web Dev",
       }}
       font={font}
-    ></Quest>,
+    />,
     <Quest
       title="Java Backend"
-      subtitle="I built a robust engine for handling forms"
+      subtitle="I built an engine for handling forms"
       description="I made a REST api using Java and Spring Boot to handle form submissions. Spring Boot/Maven. It sharpened my RESTful skills, but what about the REST?"
       url="https://github.com/audioanton/dev-website-backend"
       image="/heart-256.png"
-      alt="my green contact form"
+      alt="a pixel art heart"
       status="completed"
       xp="12450"
       skills={{
@@ -39,7 +39,23 @@ const Questlog = ({ font }: QuestlogData) => {
         third: "REST API",
       }}
       font={font}
-    ></Quest>,
+    />,
+    <Quest
+      title="React Website"
+      subtitle="A game-inspired dev portfolio"
+      description="I built this website inspired by two childhood favorites, final fantasy VII and VII. Couldn't finish those games back then, but they sure were cool."
+      url=""
+      image="/cherry-256.png"
+      alt="a pixel art cherry"
+      status="in progress"
+      xp="14322"
+      skills={{
+        first: "Typescript",
+        second: "React",
+        third: "Tailwind Css",
+      }}
+      font={font}
+    />,
   ];
 
   return (

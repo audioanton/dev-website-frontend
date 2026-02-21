@@ -53,7 +53,7 @@ const Sidebar = ({ sections, menuFont, active, policies }: SidebarProps) => {
             {section.toUpperCase()}
           </button>
           <div
-            className={`absolute z-0 top-[36px] h-[6px] w-full group-hover:opacity-100 scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-300 ease-out bg-linear-to-r from-sky-400 from-10% via-blue-700 to-blue-950 to-70% shadow-[0_0_10px_#0ea5e9] border border-sky-500/50 pointer-events-none`}
+            className={`absolute z-0 top-[36px] h-[6px] w-full group-hover:opacity-50 scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-300 ease-out bg-linear-to-r from-sky-400 from-10% via-blue-700 to-blue-950 to-70% shadow-[0_0_10px_#0ea5e9] border border-sky-500/50 pointer-events-none`}
           ></div>
         </>
       );
@@ -74,7 +74,7 @@ const Sidebar = ({ sections, menuFont, active, policies }: SidebarProps) => {
       <div className={`relative flex flex-col items-start`}>
         {isPolicies ? (
           <div
-            className={`h-[6px] w-full bg-linear-to-r from-gray-800 from-20% via-gray-700 to-gray-600 to-95% mb-3`}
+            className={`h-[4px] w-full bg-linear-to-r from-gray-800 from-20% via-gray-700 to-gray-600 to-95% opacity-50 mb-2`}
           ></div>
         ) : (
           ""
