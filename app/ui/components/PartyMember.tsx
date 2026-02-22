@@ -121,7 +121,7 @@ const PartyMember = (props: PartyMemberProps) => {
             {/* card stats */}
             <div className="h-70">
               <div>
-                <span className="flex justify-between items-end">
+                <div className="flex justify-between items-end">
                   <h3
                     className={`mx-2 text-shadow-lg/30 text-shadow-black text-4xl`}
                   >
@@ -133,7 +133,7 @@ const PartyMember = (props: PartyMemberProps) => {
                       {props.level}
                     </span>
                   </p>
-                </span>
+                </div>
                 <div className="mx-2 h-[2px] border shadow-3xl/30 border-black flex justify-between">
                   <div className="bg-amber-500 w-3/4 h-[2px]"></div>
                   <div className="bg-neutral-300/95 w-1/4 h-[2px]"></div>
@@ -232,13 +232,13 @@ const PartyMember = (props: PartyMemberProps) => {
                   <tr className="hidden md:table-row">
                     <td className="align-top pr-4">Abilities</td>
                     <td>
-                      <span className={`italic ${outlineDark} text-sm`}>
+                      <div className={`italic ${outlineDark} text-sm`}>
                         <ul className="list-none">
                           <li>{props.abilities.first}</li>
                           <li>{props.abilities.second}</li>
                           <li>{props.abilities.third}</li>
                         </ul>
-                      </span>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -250,13 +250,13 @@ const PartyMember = (props: PartyMemberProps) => {
                 <div className="mb-3 h-[2px] shadow-lg shadow-sky-500/90 border-black">
                   <div className="h-[2px] w-full bg-white/60"></div>
                 </div>
-                <span className={`italic ${outlineDark} text-sm`}>
+                <div className={`italic ${outlineDark} text-sm`}>
                   <ul>
                     <li>{props.abilities.first}</li>
                     <li>{props.abilities.second}</li>
                     <li>{props.abilities.third}</li>
                   </ul>
-                </span>
+                </div>
               </div>
             </div>
           </div>

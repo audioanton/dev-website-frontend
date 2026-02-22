@@ -48,6 +48,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
       <input
         className={`border-b text-2xl border-black w-full h-full focus:outline-none`}
         type="text"
+        id={fieldName.toLowerCase()}
         name={fieldName.toLowerCase()}
         placeholder={placeholder}
         required
@@ -58,6 +59,7 @@ const ContactForm = ({ subtitleFont, setStatus }: ContactFormProps) => {
       <textarea
         className={`border-b text-2xl border-black w-full h-50 resize-none focus:outline-none`}
         name={fieldName.toLowerCase()}
+        id={fieldName.toLowerCase()}
         placeholder={placeholder}
         required
       ></textarea>

@@ -51,7 +51,7 @@ function Quest(data: QuestData) {
             * 
             */}
             <div className="md:flex md:gap-4">
-              <span className="w-full md:w-60 transition-all transition-discrete hover:scale-105">
+              <div className="w-full md:w-60 transition-all transition-discrete hover:scale-105">
                 <Link href={data.url} aria-label={`a link to ${data.title}`}>
                   <Image
                     className={`rounded-[2px] mx-auto mb-3 md:mb-0`}
@@ -61,13 +61,13 @@ function Quest(data: QuestData) {
                     alt={data.alt}
                   />
                 </Link>
-              </span>
+              </div>
               {/* 
                 *
                 table
                 * 
                 */}
-              <span className="w-full md:w-40">
+              <div className="w-full md:w-40">
                 <table className="table-fixed w-40 border-spacing-y-4 md:mt-0 w-full">
                   <colgroup>
                     <col className="w-1/3"></col>
@@ -120,7 +120,7 @@ function Quest(data: QuestData) {
                     </tr>
                   </tbody>
                 </table>
-              </span>
+              </div>
             </div>
             <div className={`w-full flex gap-1 pt-3 items-end`}>
               <h3

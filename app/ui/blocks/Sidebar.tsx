@@ -80,12 +80,12 @@ const Sidebar = ({ sections, menuFont, active, policies }: SidebarProps) => {
           ""
         )}
         {content.map((section) => (
-          <span
+          <div
             className="w-[70%] md:w-full relative group"
             key={`menu item ${section}`}
           >
             {isPolicies ? policyJsx(section) : sectionJsx(section)}
-          </span>
+          </div>
         ))}
       </div>
     );
