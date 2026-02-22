@@ -45,7 +45,7 @@ const Carousel = ({ content }: CarouselProps) => {
         {content.map((slide, index) => (
           <div
             key={`slide ${index}`}
-            className="relative w-full h-full flex-shrink-0 snap-center flex justify-center items-center md:py-12"
+            className="relative w-full px-3 md:px-0 h-full flex-shrink-0 snap-center flex justify-center items-center md:py-12"
           >
             {slide}
           </div>
@@ -53,7 +53,7 @@ const Carousel = ({ content }: CarouselProps) => {
       </div>
 
       <button
-        onClick={() => scroll(false)}
+        onClick={() => scroll(true)}
         className="absolute md:mt-7 cursor-pointer top-50 left-[-20px] md:left-0 md:bottom-[1/2] text-white text-3xl w-[50px] md:w-20 md:h-25 md:translate-y-[-50%] transition-all transition-discrete hover:scale-130"
       >
         <Image
