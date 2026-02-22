@@ -109,31 +109,33 @@ export default function Home() {
         styles={`p-5  ${fonts.second.className} w-full`}
         divStyles={`absolute z-1 bottom-[23%] right-1/2 md:top-1/2 translate-x-1/2`}
       />
-      <Main
-        content={sections[0].jsx}
-        name={sections[0].name}
-        selection={focusedSection}
-      />
-      <Main
-        content={sections[1].jsx}
-        name={sections[1].name}
-        selection={focusedSection}
-      />
-      <Main
-        content={sections[2].jsx}
-        name={sections[2].name}
-        selection={focusedSection}
-      />
-      <Main
-        content={policies[0].jsx}
-        name={policies[0].name}
-        selection={focusedSection}
-      />
-      <Main
-        content={policies[1].jsx}
-        name={policies[1].name}
-        selection={focusedSection}
-      />
+      <div role="main">
+        <Main
+          content={sections[0].jsx}
+          name={sections[0].name}
+          selection={focusedSection}
+        />
+        <Main
+          content={sections[1].jsx}
+          name={sections[1].name}
+          selection={focusedSection}
+        />
+        <Main
+          content={sections[2].jsx}
+          name={sections[2].name}
+          selection={focusedSection}
+        />
+        <Main
+          content={policies[0].jsx}
+          name={policies[0].name}
+          selection={focusedSection}
+        />
+        <Main
+          content={policies[1].jsx}
+          name={policies[1].name}
+          selection={focusedSection}
+        />
+      </div>
     </div>
   );
 }

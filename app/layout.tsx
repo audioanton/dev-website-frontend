@@ -8,8 +8,9 @@ const saira = Saira_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "",
-  description: "",
+  title: "Anton Dev VII",
+  description:
+    "My developer portfolio, inspired by Final Fantasy VII and VIII. Look under Questlog for projects",
 };
 
 export default function RootLayout({
