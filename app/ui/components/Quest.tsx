@@ -50,16 +50,19 @@ function Quest(data: QuestData) {
             image
             * 
             */}
-            <div className="md:flex md:gap-4">
-              <div className="w-full md:w-60 transition-all transition-discrete hover:scale-105">
+            <div className="md:flex md:gap-4 relative">
+              <div className="w-full md:w-60 transition-all transition-discrete group">
                 <Link href={data.url} aria-label={`a link to ${data.title}`}>
                   <Image
-                    className={`rounded-[2px] mx-auto mb-3 md:mb-0`}
+                    className={`rounded-[2px] mx-auto mb-3 md:mb-0 group-hover:scale-105`}
                     src={data.image}
                     width={256}
                     height={256}
                     alt={data.alt}
                   />
+                  <p className="absolute text-sky-500/90 font-bold text-lg top-0 md:opacity-0 text-shadow-lg/80 text-shadow-black md:scale-0 group-hover:opacity-100 group-hover:scale-100 duration-300 ease-out rounded bg-gray-950/20 p-2 shadow-black shadow-lg/30 text-center uppercase min-w-15">
+                    link
+                  </p>
                 </Link>
               </div>
               {/* 
